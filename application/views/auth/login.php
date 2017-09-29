@@ -16,7 +16,9 @@
     <div class="login-box">
         <div class="element">
 
-            <div id="infoMessage" class="error-report"><?php echo $message;?></div>  
+            <?php if (isset($message)): ?>
+              <div id="infoMessage" class="error-report"><?php echo $message;?></div>  
+            <?php endif ?>
 
             <h2><?php echo lang('login_heading');?></h2>
             <h6><?php echo lang('login_subheading');?></h6>

@@ -88,7 +88,6 @@ body {
 }
 
 .error-report{
-    
     display: block;
     margin: 10px;
     background: linear-gradient(to right , rgba(239, 203, 47, 0.58), #ff1902);
