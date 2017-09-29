@@ -191,9 +191,98 @@ body {
     margin-top: 1.5em;
 }
 
+/* admin dashboard style inspired from https://p.w3layouts.com/demos/minimal_admin_panel/web/ */
+
+.container-fluid.custom{
+    padding: 0;
+    height: 60px    
+}
+
+.navbar-right.custom{
+    margin-right: 0;
+}
+
+.navbar-brand.custom{
+    height: 60px;
+    padding: 20px 15px;
+}
+
+.col-md-3.sidebar{
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 0;
+    background-color: #fff9f9;
+    height: 80%;
+    display: block;
+    border: 1px solid #ebeff6;
+    border-color: #ebeff6;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.sidebar ul li a {
+    color: #999;
+    font-size: 14px;
+}
+
+.nav > li > a {
+    color: #999;
+    padding: 20px 20px 20px 0px;
+    border-bottom: 1px solid #E9E9E9;
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+}
+
+.nav li i{
+    float: left;
+    margin-left: 20px;
+    font-size: 20px;
+}   
+
+.col-md-9.main-content{
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    margin-left: 15px;
+    width: 80%;
+    padding: 20px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.col-md-9.main-content.list{
+    height: 1000px;
+}
+
 
 /* Custom Media Queries */
 
+@media (min-width: 992px){
+
+    .col-md-3.sidebar {
+        width: 17%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .navbar-nav>li>a {
+        padding-top: 20px;
+            padding-bottom: 20px;
+    }
+
+}
 @media screen and (max-width: 1000px){
     .login-box{
         width: 50%;
