@@ -1,5 +1,8 @@
 {
     "require": {
-        "monolog/monolog": "1.0.*"
+        "monolog/monolog": "1.0.*",
+        "phpoffice/phpexcel": "^1.8",
+        "dompdf/dompdf": "^0.8.1",
+        "ezyang/htmlpurifier": "^4.9"
     }
 }
