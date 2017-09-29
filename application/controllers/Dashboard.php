@@ -11,8 +11,7 @@ class Dashboard extends MY_Controller {
 
 	public function index()
 	{
-		echo "logged in";
-		//$this->load->view('dashboard');
+		$this->load->view('admin/dashboard');
 	}
 
 }
