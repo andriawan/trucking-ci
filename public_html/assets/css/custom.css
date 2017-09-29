@@ -27,7 +27,7 @@ body {
 }
 
 .gradient-cover{
-    position: absolute;
+    position: fixed;
     background: linear-gradient(to right , rgba(24, 173, 253, 0.32), #1fec93);
     width: 100%;
     z-index: -10;
@@ -189,4 +189,32 @@ body {
     -ms-transition: 0.5s all;
     font-family: 'Roboto', sans-serif;
     margin-top: 1.5em;
+}
+
+
+/* Custom Media Queries */
+
+@media screen and (max-width: 1000px){
+    .login-box{
+        width: 50%;
+    } 
+}
+
+@media screen and (max-width: 500px){
+    .login-box{
+        width: 70%;
+        padding: 36px;
+    }  
+}
+
+@media screen and (max-width: 350px){
+    .login-box{
+        width: 100%;
+        padding: 16px;
+    }  
+
+    .header-login h1{
+    /* background: linear-gradient(144deg, #f5bc82 41%, #fdbd2c 51%, #bb142f 74%); */
+    font-size: 45px;
+}
 }
