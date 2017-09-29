@@ -23,7 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+
+//setting dynamic base url (http and https) --------------------------------
+
+$http = 'http'. ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's':''). '://';
+$new_url = str_replace("index.php", "", $_SERVER['SCRIPT_NAME']);
+
+
+$config['base_url'] = "$http". $_SERVER['SERVER_NAME']. "". "$new_url";
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +42,7 @@ $config['base_url'] = '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +321,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'truckingProject';
 
 /*
 |--------------------------------------------------------------------------
