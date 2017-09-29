@@ -1,0 +1,193 @@
+/* Common setup */
+/* inspired from https://w3layouts.com/preview/?l=/transparent-sign-form-responsive-widget-template/  */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+
+body {
+    /* https://pixabay.com/en/truck-formula-1-mercedes-white-2707696/ */
+    background: url(../img/truck-bg.jpg)no-repeat 0px 0px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.gradient-cover{
+    position: absolute;
+    background: linear-gradient(to right , rgba(24, 173, 253, 0.32), #1fec93);
+    width: 100%;
+    z-index: -10;
+    height: 100%;
+}
+
+/* Login Layout */
+
+.header-login{
+    display: block;
+    padding: 3em 0;
+}
+
+.header-login h1{
+    /* background: linear-gradient(144deg, #f5bc82 41%, #fdbd2c 51%, #bb142f 74%); */
+    background: white;
+    -webkit-background-clip: text;
+    font-size: 4.5em;
+    color: #ffffff;
+    text-shadow: 1px 1px 10px #9a8b89;
+    letter-spacing: 4px;
+    text-transform: capitalize;
+    font-family: 'Raleway', sans-serif;
+    word-spacing: 7px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.login-box{
+    margin: 0 auto;
+    background: rgba(19, 17, 17, 0.62);
+    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.29);
+    position: relative;
+    padding: 3em;
+    width: 30%;
+    height: auto;
+}
+
+.login-box .element h2{
+    
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 1em;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-transform: capitalize;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.login-box .element h6{
+
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    margin: 2em 0 1em;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+.error-report{
+    
+    display: block;
+    margin: 10px;
+    background: linear-gradient(to right , rgba(239, 203, 47, 0.58), #ff1902);
+    padding: 12px;
+    color: wheat;
+    border: #e2611d 1px solid;
+}
+
+.login-box .element .input1{
+    padding-bottom: 1em!important;.
+}
+
+.input1, .input2{
+    position: relative;
+    margin-top: 1.3em;
+}
+
+.input1, .input2 p{
+    color: #eff180;
+}
+
+.element input[type="email"], .element input[type="password"] {
+    outline: none;
+    font-size: 14px;
+    height: 45px;
+    border: none;
+    box-shadow: 2px 2px 21px rgba(0, 0, 0, 0.29);
+    background: rgba(255, 255, 255, 0.21);
+    width: 95.9%;
+    color: #fff;
+    padding: 10px;
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Palchoder Input Styling  */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+/* Palchoder Input Styling  */
+
+.add-action{
+    position: relative;
+    display: block;
+    margin: 1.5em 0;
+}
+
+.add-action input[type="checkbox"] {
+    background: #34bf49;
+    cursor: pointer;
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0 6px 0 0!important;
+    float: left;
+}
+
+.add-action span, .add-action a {
+    color: #fff;
+    font-size: 13px;
+    display: inline;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    float: left;
+}
+
+.add-action a{
+    float: right;
+    text-decoration: none;
+}
+
+.clear{
+    clear: both;
+}
+
+.element input[type="submit"]{
+    color: #fff;
+    background: #c70316;
+    border: none;
+    width: 100%;
+    padding: .8em 0em;
+    outline: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 1.5em;
+}
