@@ -313,6 +313,41 @@ ul.dropdown-menu.top i{
     margin-right: 15px;
 }
 
+.col-sm-10.adder div.col-sm-6.one, .col-sm-10.adder div.col-sm-6.two{
+    padding-bottom: 20px;
+}
+
+.col-sm-6.one{
+    padding-left: 0;
+}
+
+.col-sm-6.two{
+    padding-right: 0;
+}
+
+.form-group.button-item-add button{
+    margin-right: 15px;
+}
+
+/* ajax result */
+
+.dropdown-menu.result{
+    width: 100%;
+    top: 35px;
+    padding: 0;
+    border-radius: 0;
+}
+
+.dropdown-menu.result li a{
+    padding-top: 10px;
+    padding-left: 10px;
+    text-decoration: none
+    color: #9999ae;
+}
+
+
+
+
 
 /* Custom Media Queries */
 
