@@ -14,6 +14,11 @@ class Dashboard extends MY_Controller {
 		$this->load->view('admin/dashboard');
 	}
 
+	public function input()
+	{
+		$this->load->view('user/form');
+	}
+
 }
 
 /* End of file Dashboard.php */
