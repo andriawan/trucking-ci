@@ -2,16 +2,16 @@
 
 <div class="gradient-cover"></div>
 	
-	<?php $this->load->view('admin/navbar'); ?>
+	<?php $this->load->view('user/navbar'); ?>
 	
 	<div class="clearfix"></div>
 
 	<div class="container-fluid">
 		<div class="row">
 			
-			<?php $this->load->view('admin/sidebar'); ?>
+			<?php $this->load->view('user/sidebar'); ?>
 
-	  		<?php $this->load->view('admin/content'); ?>
+	  		<?php $this->load->view('user/content'); ?>
 
 		</div>
 	</div>	
