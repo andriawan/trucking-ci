@@ -193,6 +193,46 @@ body {
 
 /* admin dashboard style inspired from https://p.w3layouts.com/demos/minimal_admin_panel/web/ */
 
+.nav.custom > .dropdown > a{
+    padding-left: 20px;
+}
+
+ul.dropdown-menu.top{
+    padding: 0;
+}
+
+ul.dropdown-menu.top li{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+ul.dropdown-menu.top li:hover{
+    background: #9999ae;
+}
+
+ul.dropdown-menu.top li:hover>span>a, ul.dropdown-menu.top li:hover>span>i{
+    color: #fff;
+}
+
+ul.dropdown-menu.top li.divider{
+    padding-bottom: 0px;
+    padding-top: 0px;
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    background-color: #9999ae;
+}
+
+ul.dropdown-menu.top li span a{
+    padding: 10px;
+    text-decoration: none;
+    color: #9999ae;
+}
+
+ul.dropdown-menu.top i{
+    color: #7f7f8c;
+}
+
 .container-fluid.custom{
     padding: 0;
     height: 60px    
@@ -263,7 +303,14 @@ body {
 }
 
 .col-md-9.main-content.list{
-    height: 1000px;
+    height: auto;
+    padding-top: 50px;
+}
+
+/* User Input form */
+
+.btn.btn-success.pull-right.custom{
+    margin-right: 15px;
 }
 
 
