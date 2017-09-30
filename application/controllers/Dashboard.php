@@ -19,6 +19,20 @@ class Dashboard extends MY_Controller {
 		$this->load->view('user/form');
 	}
 
+	public function getCategory()
+	{
+		$this->load->model('Trucking','trucking');
+		$obj = $this->trucking->getAll();
+		echo json_encode($obj);
+	}
+
+	public function getby()
+	{
+		$this->load->model('Trucking','trucking');
+		$obj = $this->trucking->getBy();
+		echo json_encode($obj);
+	}
+
 }
 
 /* End of file Dashboard.php */

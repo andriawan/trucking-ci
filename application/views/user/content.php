@@ -46,22 +46,34 @@
 		  </div>
 
 		  <!-- DETAIL ITEM SERVICE -->
-		  <div class="form-group">
+		  <div class="form-group item-service">
 			    <label for="item-service" class="col-sm-2 control-label">DETAIL ITEM SERVICE</label>
-			    <div class="col-sm-5">
-			      <input type="text" name="item-service" class="form-control" id="service" placeholder="Service Category">
-			    </div>
-			    <div class="col-sm-5">
-			      <input type="text" name="price" class="form-control" id="price" placeholder="Price">
+			    <div class="col-sm-10 adder">
+			    	<div class="items">
+			    		<div class="col-sm-6 one">
+			    			<select type="text" name="item-service" class="form-control" id="service0" placeholder="Service Category">
+			    			</select>
+					      	<div class="dropdown-menu result">
+		  					</div>
+					    </div>
+					    <div class="col-sm-6 two">
+					      <input type="text" name="price" class="form-control" id="price0" placeholder="Price">
+					    </div>
+			    	</div>
 			    </div>
 		  </div>
 
 		  <!-- TO DO: ajax jquery -->
-		  <div class="form-group">
-		  		<button class="btn btn-success pull-right custom">
+		  <div class="form-group button-item-add">
+		  		<button type="button" onclick="appendItemService()" class="btn btn-success pull-right custom">
 		  		<i class="fa fa-plus-circle" aria-hidden="true"></i>
 		  		Add More Item Service
-		  		</button>		  
+		  		</button>
+
+		  		<button type="button" onclick="removeLastItem()" class="btn btn-danger pull-right custom">
+		  		<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		  		Remove Item Service
+		  		</button>
 		  </div>
 
 		  <!-- TOTAL PRICE -->

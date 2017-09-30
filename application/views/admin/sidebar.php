@@ -6,7 +6,7 @@
         </li>
        
         <li>
-            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Input Data</span><span class="fa arrow"></span></a>
+            <a href="<?php echo base_url('dashboard/input') ?>" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Input Data</span><span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse">
                 <li><a href="graphs.html" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>Graphs</a></li>
                 
