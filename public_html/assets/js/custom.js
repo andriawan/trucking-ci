@@ -109,7 +109,7 @@ function appendItemService() {
 	  		$.ajax({
 			
 			type: "POST",
-			url: "http://localhost/codeigniter/dashboard/getby",
+			url: categoryByUrl,
 			data: {id_service : $('.col-sm-6.one select#service' + (items - 1) + ' option:selected').attr('value')},
 	        dataType: "json",
 
