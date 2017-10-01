@@ -192,12 +192,21 @@ function removeLastItem() {
 		priceTotal = priceTotal + parseInt($('.col-sm-6.two input#price' + i).val());
 	}
 	$('.col-sm-10 input#total-price').val(priceTotal);
+
+	if($('.col-sm-10.adder .items').length <= 0){
+		$('#add').removeAttr('disabled');	
+	}
 }
 
 // menghapus semua element dari list item service
 function resetItem(){
 	$('.col-sm-10.adder div.items').remove();
 	$('.col-sm-10 input#total-price').val('');
+
+	if($('.col-sm-10.adder .items').length <= 0){
+		$('#add').removeAttr('disabled');	
+	}
+
 	items = 0;
 }
 
@@ -215,4 +224,10 @@ function preventAddButton() {
   	}else{
   		$('#add').removeAttr('disabled');
   	}
+}
+
+// add hidden input value untuk server untuk mengenali jumlah looping pada service item list
+function addHiddenInput() {
+	var count = items = $('.col-sm-10.adder .items').length;
+	$('.count-list').val(count);
 }
