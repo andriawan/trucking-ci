@@ -180,6 +180,8 @@ function appendItemService() {
 
  	});
 
+ 	addHiddenInput();
+
 }
 
 
