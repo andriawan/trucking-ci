@@ -65,7 +65,7 @@
 
 		  <!-- TO DO: ajax jquery -->
 		  <div class="form-group button-item-add">
-		  		<button type="button" onclick="appendItemService()" class="btn btn-success pull-right custom">
+		  		<button type="button" onclick="appendItemService()" id="add" class="btn btn-success pull-right custom">
 		  		<i class="fa fa-plus-circle" aria-hidden="true"></i>
 		  		Add More Item Service
 		  		</button>
@@ -73,6 +73,11 @@
 		  		<button type="button" onclick="removeLastItem()" class="btn btn-danger pull-right custom">
 		  		<i class="fa fa-plus-circle" aria-hidden="true"></i>
 		  		Remove Item Service
+		  		</button>
+
+		  		<button type="button" onclick="resetItem()" class="btn btn-danger pull-right custom">
+		  		<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		  		Reset All Items
 		  		</button>
 		  </div>
 
