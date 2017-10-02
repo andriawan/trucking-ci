@@ -159,4 +159,20 @@ function removeWhiteSpace($string)
 	return preg_replace('/\s+/','', $string);
 }
 
+function checkVariable($var, $var1 = null, $var2 = null )
+{
+	if(isset($var)){
+
+		return $var;
+	}
+	elseif(isset($var1))
+	{
+		return $var1;
+	}
+	elseif (isset($var2)) {
+		
+		return $var2;
+	}
+}
+
 ?>
