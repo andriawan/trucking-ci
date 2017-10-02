@@ -1,5 +1,5 @@
-<table class="table custom">
-	<thead colspan="3">
+<table width="60%" class="table custom">
+	<thead>
 		<tr>
 			<td>CAR NUMBER</td>
 			<td>STNK DATE</td>
@@ -25,7 +25,7 @@
 						<?php if ($row['id_transaction'] == $value['id_transaction']): ?>
 								
 								<li>
-								<?php echo $value['category'] ?><span>   <?php echo setRupiahFormat($value['price']) ?></span>
+								<?php echo $value['category'] ?><span>  <?php echo setRupiahFormat($value['price']) ?></span>
 								</li>
 							
 						<?php else: ?>

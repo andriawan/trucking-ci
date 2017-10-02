@@ -213,6 +213,80 @@ class Trucking extends MY_Model {
         
 	}
 
+
+	public function exportExcel()
+	{
+		$filename = 'DownloadReport';
+		$table    = $this->input->post('html');
+
+		//https://stackoverflow.com/questions/24048291/how-to-export-html-table-to-excel-using-phpexcel
+
+		// save $table inside temporary file that will be deleted later
+		$tmpfile = tempnam(sys_get_temp_dir(), 'html');
+		file_put_contents($tmpfile, $table);
+
+		// insert $table into $objPHPExcel's Active Sheet through $excelHTMLReader
+		$objPHPExcel     = new PHPExcel();
+		$excelHTMLReader = PHPExcel_IOFactory::createReader('HTML');
+		$excelHTMLReader->loadIntoExisting($tmpfile, $objPHPExcel);
+		$objPHPExcel->getActiveSheet()->setTitle($filename); // Change sheet's title if you want
+		
+		foreach (range('A', $objPHPExcel->getActiveSheet()->getHighestDataColumn()) as $col) {
+		        $objPHPExcel->getActiveSheet()
+		                ->getColumnDimension($col)
+		                ->setAutoSize(true);
+
+		        $objPHPExcel->getActiveSheet()->getRowDimension(12)->setRowHeight(-1); 
+
+		        $objPHPExcel->getActiveSheet()
+				        ->getStyle($col)
+				        ->getAlignment()
+				        ->setWrapText(true);
+
+    	}
+
+		unlink($tmpfile); // delete temporary file because it isn't needed anymore
+
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'); // header for .xlxs file
+		header('Content-Disposition: attachment;filename="'. $filename . '.xlsx"'); // specify the download file name
+		header('Cache-Control: max-age=0');
+
+		// Creates a writer to output the $objPHPExcel's content
+		$writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+		ob_start();
+		$writer->save('php://output');
+		$xlsData = ob_get_contents();
+		ob_end_clean();
+
+		$response =  array(
+		        'op' => 'ok',
+		        'file' => "data:application/vnd.ms-excel;base64,".base64_encode($xlsData)
+		    );
+
+		die(json_encode($response));
+	}
+
+	public function exportPDF()
+	{
+		$style = $this->load->view('components/common/table-render', '', TRUE);
+		$table = $this->input->post('tb');
+		$pdf = new Dompdf\Dompdf();
+		$pdf->setPaper('A4', 'landscape');
+		$pdf->load_html($style . $table);
+		$pdf->render();
+		
+		$output = $pdf->output();
+		file_put_contents("file.pdf", $output);
+
+		echo json_encode(base_url('file.pdf'));
+
+
+		// $dompdf = new Dompdf\Dompdf();
+		// $dompdf->load_html('<h1>Test</h1>');
+		// $output = $dompdf->output();
+		// file_put_contents('filename.pdf', $output);	
+	}
+
 }
 
 /* End of file Trucking.php */

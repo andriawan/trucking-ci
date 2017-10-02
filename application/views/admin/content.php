@@ -19,7 +19,7 @@
 	  		Export to Excel
 		</button>
 
-		<button type="button" id="export-pdf" class="btn btn-success custom pull-left pdf">
+		<button type="button" id="export-pdf" onclick="exportPDF()" class="btn btn-success custom pull-left pdf">
 	  		<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 	  		Export to PDF
 		</button>

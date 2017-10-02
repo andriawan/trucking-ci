@@ -286,3 +286,41 @@ function exportExcel() {
 		});
 
 }
+
+function exportPDF() {
+
+	// get parent table tag
+	var table = $('.table-responsive');
+
+	$.ajax({
+			
+			type: "POST",
+			url: base_url + 'dashboard/exportPDF',
+			data: {tb : table[0].innerHTML},
+
+	        // success: function(data) {
+	        // 	 window.open(base_url + 'dashboard/exportExcel','_blank');
+	        // },
+
+	        // jika erro saat request ajax, tampilkan log
+	        error: function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+			},
+
+			beforeSend: function () {
+				$('button#export-pdf').text('Loading...')
+			}
+
+			}).done(function(data){
+				$('button#export-pdf').append('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>');
+				$('button#export-pdf').text('Export to PDF');
+				window.open(base_url + 'file.pdf');
+			    // var blob = new Blob([data]);
+			    // var link = document.createElement('a');
+			    // link.href = window.URL.createObjectURL(blob);
+			    // link.download = "test.pdf";
+			    // link.click();
+			});
+}
