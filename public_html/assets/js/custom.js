@@ -280,7 +280,7 @@ function exportExcel() {
 			    var $a = $("<a>");
 			    $a.attr("href",data.file);
 			    $("body").append($a);
-			    $a.attr("download","file.xls");
+			    $a.attr("download","report_trucking.xls");
 			    $a[0].click();
 			    $a.remove();
 		});
@@ -316,7 +316,7 @@ function exportPDF() {
 			}).done(function(data){
 				$('button#export-pdf').append('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>');
 				$('button#export-pdf').text('Export to PDF');
-				window.open(base_url + 'file.pdf');
+				window.open(base_url + 'report_trucking.pdf');
 			    // var blob = new Blob([data]);
 			    // var link = document.createElement('a');
 			    // link.href = window.URL.createObjectURL(blob);
