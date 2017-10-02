@@ -47,6 +47,13 @@ class Trucking extends MY_Model {
 	{
 		// debug($this->input->post());
 		// data untuk transaksi
+
+		if ($this->input->post('countItemServiceList') == 0 || $this->input->post('sum-total') == 0) {
+
+			$this->session->set_flashdata('error', 'Silahkan isi item list anda');
+			redirect('dashboard/input','refresh');
+		}
+
 		$data = array(
 
 			'car_number' => $this->input->post('car-number'),
@@ -64,6 +71,9 @@ class Trucking extends MY_Model {
 		for ($i=0; $i < $this->input->post('countItemServiceList'); $i++) { 
 			$items[$i] = $this->input->post('item-service' . $i);
 		}
+
+		// debug($items);
+		// return;
 
 		$this->validate =  array(
 
@@ -98,6 +108,10 @@ class Trucking extends MY_Model {
 	        array(
 	                'field' => 'sum-total',
 	                'rules' => 'required|numeric',
+	        ),
+	        array(
+	                'field' => 'item-service0',
+	                'rules' => 'required|numeric|greater_than[0]',
 	        )
 	    );
 
@@ -142,7 +156,20 @@ class Trucking extends MY_Model {
                 'value' => $this->form_validation->set_value('ibm-date'),
             );
 
-            $this->load->view('user/form',$this->data);
+            $this->data['item-service0'] = array(
+                'name'  => 'item-service0',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('item-service0'),
+            );
+
+            $dataResult['data'] = $this->data;
+
+            $this->load->view('components/common/header');
+            $this->load->view('components/common/flash-message');
+            $this->load->view('user/navbar');
+            $this->load->view('user/sidebar');
+            $this->load->view('user/content',$dataResult);
+            $this->load->view('components/common/footer');
 
 	    }else{
 	    	
@@ -169,9 +196,8 @@ class Trucking extends MY_Model {
 				redirect('dashboard/input','refresh');		
 
 			}else{
-				$this->session->set_flashdata(
-					'error', 'Terjadi kesalahan');
-				redirect('dashboard/input','refresh');		
+				$this->session->set_flashdata('error', 'Terjadi kesalahan');
+				redirect('dashboard/auth/logout','refresh');
 			}
 
 	    }
