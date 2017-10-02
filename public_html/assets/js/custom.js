@@ -1,4 +1,3 @@
-
 // global variabel
 var trucking;
 var d = [];
@@ -208,6 +207,10 @@ function removeLastItem() {
 	if($('.col-sm-10.adder .items').length <= 0){
 		$('#add').removeAttr('disabled');	
 	}
+
+	// ambil length, pass ke hidden value count list
+	var count = $('.col-sm-10.adder .items').length;
+	$('.count-list').val(count);
 }
 
 // menghapus semua element dari list item service
@@ -220,6 +223,11 @@ function resetItem(){
 	}
 
 	items = 0;
+
+	// set count item list
+	$('.count-list').val(0);
+
+	$('.sum').val(0);
 }
 
 // logic handle untuk button enable atau disable
@@ -240,6 +248,6 @@ function preventAddButton() {
 
 // add hidden input value untuk server untuk mengenali jumlah looping pada service item list
 function addHiddenInput() {
-	var count = items = $('.col-sm-10.adder .items').length;
+	var count = $('.col-sm-10.adder .items').length;
 	$('.count-list').val(count);
 }
