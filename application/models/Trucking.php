@@ -15,6 +15,17 @@ class Trucking extends MY_Model {
 		
 	}
 
+	public function ShowUserData($value='')
+	{
+		$this->load->view('admin/dashboard', $query);
+		
+	}
+
+	public function ShowAdminData($value='')
+	{
+		# code...
+	}
+
 	public function getAllCategory()
 	{
 		return $this->db->get('service_category')->result_array();
@@ -32,8 +43,6 @@ class Trucking extends MY_Model {
 		$query['query'] = $this->db->get()->result_array();
 		$query['unique'] = unique_multidim_array($query['query'],'id_transaction');
 		$this->load->view('admin/dashboard', $query);
-		// debug($query);
-		$this->output->enable_profiler(ENVIRONMENT == 'development');
 	}
 
 	public function getByCategory()

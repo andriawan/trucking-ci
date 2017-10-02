@@ -17,7 +17,7 @@ $(document).ready(function () {
 	$.ajax({
 		
 		// url diinisalisai pada footer dengan memanfaatkan server PHP 
-		url: categoryAllUrl,
+		url: base_url + 'dashboard/getCategory',
 		// data return
         dataType: "json",
         // jika ajax sukses akan passing array data yang di map kembali
@@ -62,7 +62,7 @@ $(document).ready(function () {
 	  		$.ajax({
 			
 			type: "POST",
-			url: categoryByUrl,
+			url: base_url + 'dashboard/getby',
 			// parameter post ialah id_service 
 			data: {id_service : $('#service0 option:selected').attr('value')},
 	        dataType: "json",
@@ -149,7 +149,7 @@ function appendItemService() {
 	  		$.ajax({
 			
 			type: "POST",
-			url: categoryByUrl,
+			url: base_url + 'dashboard/getby',
 			data: {id_service : $('.col-sm-6.one select#service' + (items - 1) + ' option:selected').attr('value')},
 	        dataType: "json",
 
@@ -250,4 +250,39 @@ function preventAddButton() {
 function addHiddenInput() {
 	var count = $('.col-sm-10.adder .items').length;
 	$('.count-list').val(count);
+}
+
+// handle export Excel dan PDF
+function exportExcel() {
+
+	// get parent table tag
+	var table = $('.table-responsive');
+
+	$.ajax({
+			
+			type: "POST",
+			url: base_url + 'dashboard/exportExcel',
+			data: {html : table[0].innerHTML},
+			dataType: "json",
+
+	        // success: function(data) {
+	        // 	 window.open(base_url + 'dashboard/exportExcel','_blank');
+	        // },
+
+	        // jika erro saat request ajax, tampilkan log
+	        error: function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+			}
+
+			}).done(function(data){
+			    var $a = $("<a>");
+			    $a.attr("href",data.file);
+			    $("body").append($a);
+			    $a.attr("download","file.xls");
+			    $a[0].click();
+			    $a.remove();
+		});
+
 }

@@ -50,7 +50,44 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     text-align: left;
 }
 
+a.table-link:hover{
+    text-decoration: none;
+}
 
+a.table-link{
+    color: #663f4c;
+}
+
+.alert.action{
+    color: #f8f8f8;
+    background-color: #57b9e9;
+    border-color: #8ad9e9;
+    border-radius: 0px;
+}
+
+.alert.action p{
+    text-align: left;
+    font-size: 13px;
+}
+
+.btn.excel{
+    margin-bottom: 10px;
+    border-radius: 0px;
+    background-color: #0ac888;
+    border: none;
+    font-size: 12px;
+    float: left;
+}
+
+.btn.pdf{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 0px;
+    background-color: #df4949;
+    border: none;
+    font-size: 12px;
+    float: left;
+}
 
 body {
     /* https://pixabay.com/en/truck-formula-1-mercedes-white-2707696/ */
@@ -349,7 +386,7 @@ ul.dropdown-menu.top i{
 
 .col-md-12.main-content.list{
     height: auto;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
 /* User Input form */

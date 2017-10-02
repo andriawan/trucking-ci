@@ -8,6 +8,7 @@
 
 	var categoryAllUrl = "<?php echo base_url('dashboard/getCategory') ?>";
 	var categoryByUrl = "<?php echo base_url('dashboard/getby') ?>";
+	var base_url = "<?php echo base_url() ?>";
 	
 </script>
 </html>
