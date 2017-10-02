@@ -276,7 +276,7 @@ class Trucking extends MY_Model {
 		$pdf->render();
 		
 		$output = $pdf->output();
-		file_put_contents("file.pdf", $output);
+		file_put_contents("report_trucking.pdf", $output);
 
 		echo json_encode(base_url('file.pdf'));
 
