@@ -11,7 +11,8 @@ class Dashboard extends MY_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/dashboard');
+		$this->load->model('Trucking','trucking');
+		$this->trucking->showData();
 	}
 
 	public function input()
@@ -22,15 +23,23 @@ class Dashboard extends MY_Controller {
 	public function getCategory()
 	{
 		$this->load->model('Trucking','trucking');
-		$obj = $this->trucking->getAll();
+		$obj = $this->trucking->getAllCategory();
 		echo json_encode($obj);
 	}
 
 	public function getby()
 	{
 		$this->load->model('Trucking','trucking');
-		$obj = $this->trucking->getBy();
+		$obj = $this->trucking->getByCategory();
 		echo json_encode($obj);
+	}
+
+	public function submitData()
+	{
+		$this->load->model('Trucking','trucking');
+		// debug($this->input->post());
+		// debug($this->session->userdata());
+		$this->trucking->processData();
 	}
 
 }
