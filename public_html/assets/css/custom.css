@@ -10,6 +10,47 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
 }
 
+/* for alert flash message */
+.alert.custom{
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.alert-success.custom{
+    color: #ffffff;
+    background-color: #5fdc2c;
+    border-color: #9bf153;
+}
+
+.alert-danger.custom{
+    color: #ffffff;
+    background-color: #f73737;
+    border-color: #f57489;
+}
+
+.close.custom{
+    padding-right: 10px;
+    padding-top: 5px;
+    color: white;
+    opacity: inherit;
+}
+
+/* Tabel style */
+.table.custom{
+    background: white;
+    font-size: 12px;
+}
+
+.table.custom thead{
+    background: #0ac888;
+    color: white;
+}
+
+.table.custom li{
+    text-align: left;
+}
+
+
 
 body {
     /* https://pixabay.com/en/truck-formula-1-mercedes-white-2707696/ */
@@ -287,6 +328,10 @@ ul.dropdown-menu.top i{
     font-size: 20px;
 }   
 
+.banner{
+    margin-bottom: 10px;
+}
+
 .col-md-9.main-content{
     margin-top: 10px;
     background: rgba(255, 255, 255, 0.85);
@@ -302,7 +347,7 @@ ul.dropdown-menu.top i{
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 
-.col-md-9.main-content.list{
+.col-md-12.main-content.list{
     height: auto;
     padding-top: 50px;
 }

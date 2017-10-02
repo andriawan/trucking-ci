@@ -72,6 +72,8 @@ $(document).ready(function () {
 	        success: function(data) {
 	        	trucking.resultBy = data;
 
+	        	priceTotal = 0;
+
 	        	$('#price0').val(trucking.resultBy[0].price);
 
 	        	// refresh total harga keseluruhan
@@ -81,6 +83,10 @@ $(document).ready(function () {
 
 	        	// passing var priceTotal ke value price
 	        	$('.col-sm-10 input#total-price').val(priceTotal);
+
+	        	// ambil valu total, pass ke hidden value
+	        	var sum = $('.col-sm-10 input#total-price').val();
+				$('.sum').val(sum);
 
 	        	// cek add item list apakah bisa enable atau tidak(akan disable jika #price valu empty
 	        	// string, guna menghindari integritas data yang tidak sesuai
@@ -99,26 +105,26 @@ $(document).ready(function () {
 
   	});
 
+  	// datepicker jquery ui
+	$(".form-control.date").datepicker({
+
+		altField: "#actualDate",
+		dateFormat: "dd-mm-yy",
+		changeMonth: true,
+		changeYear: true,
+		autoSize: true,
+		yearRange: "-25:+50"
+
+	});
+
 
 }); // end of document ready function
 
 
-// datepicker jquery ui
-$(".form-control.date").datepicker({
-
-	altField: "#actualDate",
-	dateFormat: "dd-mm-yy",
-	changeMonth: true,
-	changeYear: true,
-	autoSize: true,
-	yearRange: "-25:+50"
-
-});
-
 // menambahkan arbitrary list item kategori. tingkat kesulitan cukup tinggi
 function appendItemService() {
 	// mempersiapkan tag html yang akan di tambahkan ke DOM
-	var tag = "<div class='items'><div class='col-sm-6 one'><select type='text' name='item-service" + items + "' class='form-control' id='service" + items + "' placeholder='Service Category'></select></div><div class='col-sm-6 two'><input type='text' name='price" + items + "' class='form-control' id='price" + items + "' placeholder='Price'></div></div>";
+	var tag = "<div class='items'><div class='col-sm-6 one'><select type='text' name='item-service" + items + "' class='form-control' id='service" + items + "' placeholder='Service Category'></select></div><div class='col-sm-6 two'><input type='text' disabled='true' name='price" + items + "' class='form-control' id='price" + items + "' placeholder='Price'></div></div>";
 
 	// tambahkan ke DOM
     $(".col-sm-10.adder").append(tag);
@@ -161,6 +167,10 @@ function appendItemService() {
 				}
 				// passing var priceTotal ke value price
 	        	$('.col-sm-10 input#total-price').val(priceTotal);
+	        	
+	        	// ambil valu total, pass ke hidden value
+	        	var sum = $('.col-sm-10 input#total-price').val();
+				$('.sum').val(sum);
 
 	        	// cek add item list apakah bisa enable atau tidak(akan disable jika #price valu empty
 				// string, guna menghindari integritas data yang tidak sesuai
