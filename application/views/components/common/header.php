@@ -9,3 +9,4 @@
 	    <?php $this->load->view('components/custom/css'); ?>
 	</head>
 <body>
+<?php $this->load->view('components/common/flash-message'); ?>
