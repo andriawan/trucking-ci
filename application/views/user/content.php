@@ -1,3 +1,5 @@
+<?php isset($data) ? debug($data) : ""; ?>
+
 <div class="col-md-9 main-content">
 
 	<div class="banner">
@@ -13,7 +15,7 @@
 		<?php echo form_open('dashboard/submitData','class="form-horizontal"'); ?>
 
 			<!-- HIDDEN VALUE -->
-				<input type="hidden" class="count-list" name="countItemServiceList" value="0" />
+				<input type="hidden" class="count-list" name="countItemServiceList" value="1" />
 				<input type="hidden" class="sum" name="sum-total" value="0" />
 			  
 			  <!-- CAR NUMBER -->

@@ -1,6 +1,4 @@
 <?php $this->load->view('components/common/header.php'); ?>
-
-<div class="gradient-cover"></div>
 	
 	<?php $this->load->view('admin/navbar'); ?>
 	
