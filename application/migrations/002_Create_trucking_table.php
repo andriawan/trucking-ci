@@ -75,18 +75,53 @@ class Migration_Create_trucking_table extends CI_Migration {
 		$this->dbforge->add_key('id_service', TRUE);
 		$this->dbforge->create_table('service_category');
 
+		$dataCategory = array(
+			array(
+				'category' => 'BAN DEPAN',
+				'price' => 200000
+			),
+			array(
+				'category' => 'OLI SAMPING',
+				'price' => 300000
+			),
+			array(
+				'category' => 'BAN DALAM',
+				'price' => 100000
+			),
+			array(
+				'category' => 'LAMPU',
+				'price' => 50000
+			)
+		);
+
+		$this->db->query('ALTER TABLE service_category auto_increment = 1');
+		$this->db->insert_batch('service_category', $dataCategory);
+
+
+
 
 		// =========================trucking_transaction ========================
 
 		$this->dbforge->drop_table('trucking_service_transaction', TRUE);
 
 		$this->dbforge->add_field(array(
+			'id' => array(
+				'type' => 'INT',
+				'constraint' => '9',
+				'unsigned' => TRUE,
+				'auto_increment' => TRUE
+			),
 			'id_transaction' => array(
 				'type' => 'INT',
 				'constraint' => '9',
 				'unsigned' => TRUE
 			),
 			'id_service' => array(
+				'type' => 'INT',
+				'constraint' => '9',
+				'unsigned' => TRUE,
+			),
+			'total_price' => array(
 				'type' => 'INT',
 				'constraint' => '9',
 				'unsigned' => TRUE,
@@ -110,6 +145,7 @@ class Migration_Create_trucking_table extends CI_Migration {
 		// 	ON UPDATE CASCADE'
 		// );
 
+		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('trucking_service_transaction');
 
 
