@@ -45,6 +45,32 @@ class Trucking extends MY_Model {
 		$this->load->view('admin/dashboard', $query);
 	}
 
+	public function showSingleUser()
+	{
+		if ($this->session->userdata('user_id') == null || !$this->ion_auth->logged_in()) {
+			redirect('auth/logout','refresh');
+		}
+
+		$id = $this->session->userdata('user_id');
+
+		$this->db->select('*');
+		$this->db->from('trucking_service_transaction');
+		$this->db->join(
+			'trucking_transaction', 'trucking_service_transaction.id_transaction = trucking_transaction.id_transaction');
+		$this->db->join(
+			'service_category', 'trucking_service_transaction.id_service = service_category.id_service');
+		$this->db->join(
+			'users', 'trucking_service_transaction.user_id = users.id');
+		$this->db->where(array(
+				'users.id' => $id
+			));
+		$this->db->order_by('trucking_transaction.service_date', 'DESC');
+		$query['query'] = $this->db->get()->result_array();
+		$query['unique'] = unique_multidim_array($query['query'],'id_transaction');
+		$this->load->view('user/data-list', $query);
+
+	}
+
 	public function getByCategory()
 	{
 		$parameter = $this->input->post('id_service');
@@ -66,6 +92,9 @@ class Trucking extends MY_Model {
 		$data = array(
 
 			'car_number' => $this->input->post('car-number'),
+			'user_id' => $this->session->userdata('user_id'),
+			'nama_driver' => $this->input->post('nama-driver'),
+			'tempat_service' => $this->input->post('tempat-service'),
 			'stnk_date' => make_sql_date_time($this->input->post('stnk-date')),
 			'pkb_date' => make_sql_date_time($this->input->post('pkb-date')),
 			'service_date' => make_sql_date_time($this->input->post('service-date')),
@@ -91,13 +120,13 @@ class Trucking extends MY_Model {
 	                'rules' => 'required',
 	        ),
 	        array(
-	                'field' => 'stnk-date',
+	                'field' => 'nama-driver',
 	                'rules' => 'required',
 	        ),
 	        array(
-	                'field' => 'pkb-date',
+	                'field' => 'tempat-service',
 	                'rules' => 'required',
-	        ),
+	        ),	        
 	        array(
 	                'field' => 'service-date',
 	                'rules' => 'required',
@@ -133,6 +162,16 @@ class Trucking extends MY_Model {
                 'name'  => 'car-number',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('car-number'),
+            );
+            $this->data['nama_driver'] = array(
+                'name'  => 'nama-driver',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('nama-driver'),
+            );
+            $this->data['tempat_service'] = array(
+                'name'  => 'tempat-service',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('tempat-service'),
             );
             $this->data['stnk_date'] = array(
                 'name'  => 'stnk-date',
@@ -184,17 +223,18 @@ class Trucking extends MY_Model {
 	    	
 	    	if ($this->session->userdata('user_id') != null) {
 
-	    		$this->db->query('LOCK TABLE trucking_transaction WRITE');
+	    		//$this->db->query('LOCK TABLE trucking_transaction WRITE');
 
 				$id = $this->insert($data);
 
-				$this->db->query('UNLOCK TABLES');
+				//$this->db->query('UNLOCK TABLES');
 
 				for ($i = 0; $this->input->post('countItemServiceList') > $i ; $i++) { 
 
 					$this->db->insert('trucking_service_transaction', array(
 							'id_transaction' => $id,
 							'id_service' => $items[$i],
+							'user_id' => $this->session->userdata('user_id'),
 							'total_price' => $this->input->post('sum-total')
 						 )
 					);

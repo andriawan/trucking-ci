@@ -2,6 +2,8 @@
 	<thead>
 		<tr>
 			<td>CAR NUMBER</td>
+			<td>NAMA DRIVER</td>
+			<td>SERVICE PLACE</td>
 			<td>STNK DATE</td>
 			<td>PKB</td>
 			<td>SERVICE</td>	
@@ -16,6 +18,8 @@
 	<?php foreach ($unique as $row): ?>
 		<tr>
 			<td><a href="#" class="table-link car<?php echo $counter; ?>"><?php echo $row['car_number']; ?></a></td>
+			<td><?php echo $row['nama_driver']; ?></td>
+			<td><?php echo $row['tempat_service']; ?></td>
 			<td class="td-stnk<?php echo $counter; ?>"><?php echo sql_to_date($row['stnk_date']); ?></td>
 			<td><?php echo sql_to_date($row['pkb_date']); ?></td>
 			<td><?php echo sql_to_date($row['service_date']); ?></td>	

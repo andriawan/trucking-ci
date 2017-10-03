@@ -24,6 +24,22 @@
 			    </div>
 			  </div>
 
+			  <!-- NAMA DRIVER -->
+			  <div class="form-group">
+			    <label for="car-number" class="col-sm-2 control-label">NAMA DRIVER</label>
+			    <div class="col-sm-10">
+			      <input type="text" name="nama-driver" class="form-control" required="true" id="driver" placeholder="Input Nama Driver Here">
+			    </div>
+			  </div>
+
+			  <!-- TEMPAT SERVICE -->
+			  <div class="form-group">
+			    <label for="car-number" class="col-sm-2 control-label">TEMPAT SERVICE</label>
+			    <div class="col-sm-10">
+			      <input type="text" name="tempat-service" class="form-control" required="true" id="tempat-service" placeholder="Input TEMPAT SERVICE Here">
+			    </div>
+			  </div>
+
 			  <!-- STNK DATE -->
 			  <div class="form-group">
 			    <label for="stnk-date" class="col-sm-2 control-label">STNK DATE</label>

@@ -35,14 +35,13 @@ class Dashboard extends MY_Controller {
 	}
 
 	public function exportExcel()
-	{	$this->ionAuthCheck();
+	{	
 		$this->load->model('Trucking','trucking');
 		$this->trucking->exportExcel();
 	}
 
 	public function exportPDF()
 	{	
-		$this->ionAuthCheck();
 		$this->load->model('Trucking','trucking');
 		$this->trucking->exportPDF();
 	}
@@ -78,6 +77,12 @@ class Dashboard extends MY_Controller {
 	{
 		$this->load->model('Trucking','trucking');
 		$this->trucking->processData();	
+	}
+
+	public function daftar_list()
+	{
+		$this->load->model('Trucking','trucking');
+		$this->trucking->showSingleUser();
 	}
 
 }
