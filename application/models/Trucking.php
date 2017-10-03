@@ -287,6 +287,105 @@ class Trucking extends MY_Model {
 		// file_put_contents('filename.pdf', $output);	
 	}
 
+	public function showAddUser()
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			return show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
+			$this->load->view('admin/add-user');
+		}
+	}
+
+	public function processAddUser()
+	{
+		
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+
+        $identity_column = $this->config->item('identity','ion_auth');
+
+		$data = array(
+
+			'email' => $this->input->post('email'),
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+
+		);
+
+		$this->validate =  array(
+
+	        array(
+	                'field' => 'email',
+	                'rules' => 'required|valid_email|is_unique[users.username]',
+	        ),
+	        array(
+	                'field' => 'username',
+	                'rules' => 'required|is_unique[users.username]',
+	        ),
+	        array(
+	                'field' => 'password',
+	                'rules' => 'required|min_length[6]',
+	        )
+	    );
+
+
+	    if ($this->validate($data) == FALSE) {
+
+			$this->data['message'] = validation_errors();
+
+            $this->data['email'] = array(
+                'name'  => 'email',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('email'),
+            );
+            $this->data['username'] = array(
+                'name'  => 'username',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('username'),
+            );
+            
+            $dataResult['data'] = $this->data;
+
+            $this->load->view('admin/add-user', $dataResult);
+
+        // if validation is passed
+	    }else{
+	    	
+            $email    = strtolower($this->input->post('email'));
+            $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
+            $password = $this->input->post('password');
+
+            $additional_data = array(
+                'username' => $this->input->post('username'),
+            );
+
+           
+        
+        	if ($this->ion_auth->register($identity, $password, $email, $additional_data))
+        	{
+            // check to see if we are creating the user
+            // redirect them back to the admin page
+            $this->session->set_flashdata('sukses', $this->ion_auth->messages());
+            redirect('dashboard/adduser', 'refresh');
+        	}
+
+	    }
+
+
+		
+	}
+
 }
 
 /* End of file Trucking.php */
