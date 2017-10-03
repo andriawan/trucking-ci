@@ -277,7 +277,13 @@ function exportExcel() {
 					console.log(xhr);
 					console.log(status);
 					console.log(error);
+			},
+
+			beforeSend: function () {
+				$('button#export-excel span').replaceWith('<span>Loading...</span>');
+				$('button#export-excel').attr('disabled', 'true');
 			}
+
 
 			}).done(function(data){
 			    var $a = $("<a>");
@@ -286,6 +292,8 @@ function exportExcel() {
 			    $a.attr("download","report_trucking.xls");
 			    $a[0].click();
 			    $a.remove();
+			    $('button#export-excel span').replaceWith('<span>Export to Excel</span>');
+			    $('button#export-excel').removeAttr('disabled');
 		});
 
 }
@@ -313,12 +321,13 @@ function exportPDF() {
 			},
 
 			beforeSend: function () {
-				$('button#export-pdf').text('Loading...')
+				$('button#export-pdf').attr('disabled', 'true');
+				$('button#export-pdf span').replaceWith('<span>Loading...</span>');
 			}
 
 			}).done(function(data){
-				$('button#export-pdf').append('<i class="fa fa-file-pdf-o" aria-hidden="true"></i>');
-				$('button#export-pdf').text('Export to PDF');
+				$('button#export-pdf span').replaceWith('<span>Export to PDF</span>');
+				$('button#export-pdf').removeAttr('disabled');
 				window.open(base_url + 'report_trucking.pdf');
 			    // var blob = new Blob([data]);
 			    // var link = document.createElement('a');
@@ -364,4 +373,79 @@ function cekStnkDate(now) {
 
 function closeNotif() {
 	$('.notif-me').remove();	
+}
+
+
+// inspired from https://codepen.io/CSWApps/pen/sBzmy
+// Generate a password string
+function randString(id){
+	  var dataSet = $(id).attr('data-character-set').split(',');  
+	  var possible = '';
+	  if($.inArray('a-z', dataSet) >= 0){
+	    possible += 'abcdefghijklmnopqrstuvwxyz';
+	  }
+	  if($.inArray('A-Z', dataSet) >= 0){
+	    possible += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	  }
+	  if($.inArray('0-9', dataSet) >= 0){
+	    possible += '0123456789';
+	  }
+	  if($.inArray('#', dataSet) >= 0){
+	    possible += '![]{}()%&*$#^<>~@|';
+	  }
+	  var text = '';
+	  for(var i=0; i < $(id).attr('data-size'); i++) {
+	    text += possible.charAt(Math.floor(Math.random() * possible.length));
+	  }
+	  return text;
+}
+
+// Create a new password on page load
+$('input[rel="gp"]').each(function(){
+  $(this).val(randString($(this)));
+});
+
+// Create a new password
+$(".getNewPass").click(function(){
+  var field = $(this).closest('div').find('input[rel="gp"]');
+  field.val(randString(field));
+});
+
+// Auto Select Pass On Focus
+$('input[rel="gp"]').on("click", function () {
+   $(this).select();
+});
+
+
+// inspired from/taken from https://codepen.io/CSWApps/pen/sBzmy
+//Place this plugin snippet into another file in your applicationb
+(function ($) {
+    $.toggleShowPassword = function (options) {
+        var settings = $.extend({
+            field: "#password",
+            control: "#toggle_show_password",
+        }, options);
+
+        var control = $(settings.control);
+        var field = $(settings.field)
+
+        control.bind('click', function () {
+            if (control.is(':checked')) {
+                field.attr('type', 'text');
+            } else {
+                field.attr('type', 'password');
+            }
+        })
+    };
+}(jQuery));
+
+//Here how to call above plugin from everywhere in your application document body
+$.toggleShowPassword({
+    field: '#password',
+    control: '#enable-show'
+});
+
+function copyGeneratedPassword() {
+	$('#password').val($('input[rel="gp"]').val());
+	$('#myModal').modal('hide');
 }

@@ -128,6 +128,11 @@ ul.car-name li{
     min-width: 100%;
 }
 
+.user-button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 body {
     /* https://pixabay.com/en/truck-formula-1-mercedes-white-2707696/ */
     background: url(../img/truck-bg.jpg)no-repeat 0px 0px;
