@@ -11,6 +11,10 @@ class Dashboard extends MY_Controller {
 
 	public function index()
 	{
+		if (!$this->ion_auth->is_admin()){
+			redirect('dashboard/input','refresh');
+		}
+
 		$this->ionAuthCheck();
 		$this->load->model('Trucking','trucking');
 		$this->trucking->showData();
