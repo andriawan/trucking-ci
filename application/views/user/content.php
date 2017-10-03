@@ -4,8 +4,6 @@
 
 	<div class="banner">
 		<h2>
-			<a href="<?php echo base_url('dashboard/input'); ?>">Dashboard</a>
-			<i class="fa fa-angle-right"></i>
 			<span>INPUT DATA</span>
 		</h2>
 	</div>

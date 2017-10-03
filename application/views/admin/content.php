@@ -16,12 +16,12 @@
 
 		<button type="button" onclick="exportExcel()" id="export-excel" class="btn btn-success custom pull-left excel">
 	  		<i class="fa fa-file-excel-o" aria-hidden="true"></i>
-	  		Export to Excel
+	  		<span>Export to Excel</span>
 		</button>
 
 		<button type="button" id="export-pdf" onclick="exportPDF()" class="btn btn-success custom pull-left pdf">
 	  		<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-	  		Export to PDF
+	  		<span>Export to PDF</span>
 		</button>
 
 		<div class="clearfix"></div>
