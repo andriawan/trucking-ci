@@ -6,36 +6,43 @@ class Dashboard extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->ionAuthCheck();
+		$this->tables  = $this->config->item('tables', 'ion_auth');
 	}
 
 	public function index()
 	{
+		$this->ionAuthCheck();
 		$this->load->model('Trucking','trucking');
 		$this->trucking->showData();
 	}
 
+	public function adduser()
+	{
+		$this->ionAuthCheck();
+		$this->load->model('Trucking','trucking');
+		$this->trucking->showAddUser();
+	}
+
+	public function submitUser()
+	{
+		$this->ionAuthCheck();
+		$this->load->model('Trucking','trucking');
+		$this->trucking->processAddUser();
+	}
+
 	public function tester()
 	{
-		$objPHPExcel = new PHPExcel();
-		$objPHPExcel->getActiveSheet()->setTitle('ReceivedMessages');
-		header('Content-Type: application/vnd.ms-excel');
-		$file_name = "kpi_form_".date("Y-m-d_H:i:s").".xls";
-		header("Content-Disposition: attachment; filename=$file_name");
-		// If you're serving to IE 9, then the following may be needed
-		header('Cache-Control: max-age=1');
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$objWriter->save('php://output');
 	}
 
 	public function exportExcel()
-	{	
+	{	$this->ionAuthCheck();
 		$this->load->model('Trucking','trucking');
 		$this->trucking->exportExcel();
 	}
 
 	public function exportPDF()
 	{	
+		$this->ionAuthCheck();
 		$this->load->model('Trucking','trucking');
 		$this->trucking->exportPDF();
 	}
