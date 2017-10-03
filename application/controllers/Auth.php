@@ -62,16 +62,24 @@ class Auth extends CI_Controller {
 
 			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
 			{
+				// if not admin
+				if (!$this->ion_auth->is_admin()) {
+					
+					$this->session->set_flashdata('sukses', $this->ion_auth->messages());
+					redirect('dashboard/input', 'refresh');
+				}else{
+					$this->session->set_flashdata('sukses', $this->ion_auth->messages());
+					redirect('dashboard', 'refresh');
+
+				}
 				//if the login is successful
 				//redirect them back to the home page
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('dashboard', 'refresh');
 			}
 			else
 			{
 				// if the login was un-successful
 				// redirect them back to the login page
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
+				$this->session->set_flashdata('error', $this->ion_auth->errors());
 				redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
