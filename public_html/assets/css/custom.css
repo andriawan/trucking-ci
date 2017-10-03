@@ -89,6 +89,45 @@ a.table-link{
     float: left;
 }
 
+.notif-me{
+
+    display: none;
+    position: fixed;
+    background: #f72222;
+    color: white;
+    width: 500px;
+    height: auto;
+    margin: 8px;
+    bottom: 0;
+    right: 0;
+}
+
+.notif-me h3{
+    padding: 20px;
+    background: #dd0606;
+    font-size: 25px;
+}
+
+ul.car-name{
+    padding-left: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+ul.car-name li{
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+#close-notif{
+    border-radius: 0;
+    background: #dd0606;
+    border: none;
+    padding: 20px;
+    min-width: 100%;
+}
+
 body {
     /* https://pixabay.com/en/truck-formula-1-mercedes-white-2707696/ */
     background: url(../img/truck-bg.jpg)no-repeat 0px 0px;

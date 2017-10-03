@@ -12,10 +12,11 @@
 			<td>IBM</td>
 		</tr>
 	</thead>
+	<?php $counter = 0 ?>
 	<?php foreach ($unique as $row): ?>
 		<tr>
-			<td><a href="#" class="table-link"><?php echo $row['car_number']; ?></a></td>
-			<td><?php echo sql_to_date($row['stnk_date']); ?></td>
+			<td><a href="#" class="table-link car<?php echo $counter; ?>"><?php echo $row['car_number']; ?></a></td>
+			<td class="td-stnk<?php echo $counter; ?>"><?php echo sql_to_date($row['stnk_date']); ?></td>
 			<td><?php echo sql_to_date($row['pkb_date']); ?></td>
 			<td><?php echo sql_to_date($row['service_date']); ?></td>	
 			<td>
@@ -40,6 +41,16 @@
 			<td><?php echo sql_to_date($row['sipa_date']); ?></td>
 			<td><?php echo sql_to_date($row['ibm_date']); ?></td>
 		</tr>
+		<?php $counter++ ?>
 	<?php endforeach ?>
 	
 </table>
+<div class="notif-me">
+	<div>
+		<h3>Bapak Yang terhormat</h3>
+		<ul class="car-name"></ul>
+		<button type="button" onclick="closeNotif()" id="close-notif" class="btn btn-success pull-left">
+	  		Close Notifications
+		</button>
+	</div>
+</div>

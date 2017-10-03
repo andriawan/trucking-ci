@@ -10,6 +10,9 @@ $(document).ready(function () {
 	// inisialisasi DOM list jumlah item list service
 	items = $('.col-sm-10.adder .items').length;
 
+	//cek stnk jatuh tempo atau tidak
+	cekStnkDate($.now());
+
 
 	// ambil data categori list service dari database dengan ajax
 	// parsing dengan JSON dari server PHP
@@ -323,4 +326,42 @@ function exportPDF() {
 			    // link.download = "test.pdf";
 			    // link.click();
 			});
+}
+
+// cek apakan masa stnk sudah jatuh tempo dalam rentang 7 hari
+function cekStnkDate(now) {
+
+	var counter = 0;
+	// 7 hari
+	var target = 1000 * 60 * 60 * 24 * 7;
+
+	for (var i = 0 ; i < $('.table tbody tr').length  ; i++) {
+
+		var stnk_date = Date.parse($('.td-stnk' + i).text());
+
+		if(stnk_date - target >= now ){
+			console.log('masih aman');
+		}else{
+			$('.td-stnk' + i).css({
+				background: "red",
+				color: "white"
+			});
+
+			$('.td-stnk' + i).append('<br><p>(stnk akan jatuh tempo)</p>');
+
+			$('ul.car-name')
+			.append('<li> Mobil dengan Nomer Polisi ' + $('.table-link.car' + i).text() + ' akan mati pada tanggal ' + $('.td-stnk' + i).text() + '</li>');
+
+			setTimeout(function () {
+				$('.notif-me:hidden').fadeIn("fast");
+			}, 2000)
+		}
+		
+	}
+	
+	
+}
+
+function closeNotif() {
+	$('.notif-me').remove();	
 }
