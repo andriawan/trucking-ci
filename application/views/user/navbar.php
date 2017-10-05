@@ -31,7 +31,7 @@
 	          </ul>
 	        </li>
 	        <a href="" title="avatar" class="avatar">
-	        	<img src="<?php echo base_url('assets/img/wo.jpg') ?>" alt="avatar">
+	        	<img class="img-circle" src="<?php echo base_url('assets/img/wo.jpg') ?>" alt="avatar">
 	        </a>	
 	      </ul>
 	    </div><!-- /.navbar-collapse -->

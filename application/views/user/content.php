@@ -4,7 +4,7 @@
 
 	<div class="banner">
 		<h2>
-			<span>INPUT DATA</span>
+			<span>EDIT DATA</span>
 		</h2>
 	</div>
 
