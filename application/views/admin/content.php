@@ -10,9 +10,12 @@
 
 	<div class="col-md-12 main-content list">
 
-		<div class="alert alert-info alert-dismissible action" role="alert">
-		  <p>Info! Untuk Edit atau Delete Data Silahkan klik Car Number</p>
+		
+		 <div class="pull-left badges">
+			<span class="badge data">Total data : <?php echo $total_rows; ?></span>
 		</div>
+
+		<div class="clearfix"></div>
 
 		<button type="button" onclick="exportExcel()" id="export-excel" class="btn btn-success custom pull-left excel">
 	  		<i class="fa fa-file-excel-o" aria-hidden="true"></i>
@@ -27,6 +30,7 @@
 		<nav aria-label="...">
 		  <?php echo $pagination; ?>
 		</nav>
+
 
 		<div class="clearfix"></div>
 

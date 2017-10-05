@@ -212,6 +212,25 @@ ul.car-name li{
   background:#0ac888; 
 }
 
+.badge.data{
+    color: #ffffff;
+    background:#0ac888;    
+    display: inline;
+    min-width: 10px;
+    padding: 4px 11px;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 18px;
+}
+
+.pull-left.badges{
+    margin-bottom: 25px;
+}
+
 .pagination-custom>.active>a, 
 .pagination-custom>.active>a:focus, 
 .pagination-custom>.active>a:hover, 
