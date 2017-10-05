@@ -10,6 +10,27 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     vertical-align: baseline;
 }
 
+.img-circle {
+    height:50px;
+    margin-right:10px;
+    margin-top:5px;
+    border-radius: 50%;
+}
+
+.block {
+  width: 320px;
+  margin:50px 40px 10px 40px;
+  padding:0px 0px 0px 0px;
+  text-align:center;
+  display: inline-block; 
+  vertical-align: top;
+}
+ #footer {
+ margin-top:100px;
+  padding:0;
+  background-color:#003f7d;
+}
+
 /* for alert flash message */
 .alert.custom{
     margin-bottom: 0px;

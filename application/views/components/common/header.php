@@ -11,3 +11,4 @@
 <body>
 <?php $this->load->view('components/common/flash-message'); ?>
 <div class="gradient-cover"></div>
+
