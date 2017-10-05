@@ -77,9 +77,9 @@ class Trucking extends MY_Model {
 	{
 		$this->load->library('pagination');
 
-		$total_rows = $this->db->count_all_results('trucking_transaction');
+		$total_rows = $this->db->select('*')->group_by('id_transaction')->count_all_results('trucking_service_transaction');
 
-		$config['total_rows'] = $this->db->count_all_results('trucking_transaction') - 1;
+		$config['total_rows'] = $this->db->count_all_results('trucking_transaction');
 		$config['per_page'] = 3	;
 		$config['base_url'] = base_url('dashboard/page/');
 
