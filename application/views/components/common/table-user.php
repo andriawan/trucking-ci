@@ -16,13 +16,13 @@
 			<td>
         
         		<a href="<?php echo site_url('dashboard/edituser/'. $row['id']); ?>">         			
-        			<button  class="btn btn-success excel">
+        			<button  class="btn btn-success edit">
         				<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
         			</button>
         		</a>
 
                	<a href="<?php echo site_url('dashboard/deleteuser/'.$row['id']); ?>" onClick="return confirm('Are you sure you want to delete?')">                  
-                    <button  class="btn btn-danger pdf">
+                    <button  class="btn btn-danger hapus">
                     	<i class="fa fa-trash-o" aria-hidden="true"></i> Delete
                     </button>
                	</a>
