@@ -21,7 +21,10 @@
 			<td><a href="#" class="table-link car<?php echo $counter; ?>"><?php echo $row['car_number']; ?></a></td>
 			<td><?php echo $row['nama_driver']; ?></td>
 			<td><?php echo $row['tempat_service']; ?></td>
-			<td class="td-stnk<?php echo $counter; ?>"><?php echo sql_to_date($row['stnk_date']); ?></td>
+			<td class="td-stnk<?php echo $counter; ?>">
+				<?php echo sql_to_date($row['stnk_date']); ?>
+				<span style="display: none"><?php echo $row['stnk_date']; ?></span>
+			</td>
 			<td><?php echo sql_to_date($row['pkb_date']); ?></td>
 			<td><?php echo sql_to_date($row['service_date']); ?></td>	
 			<td>
@@ -45,10 +48,20 @@
 			<td><?php echo sql_to_date($row['kir_date']); ?></td>
 			<td><?php echo sql_to_date($row['sipa_date']); ?></td>
 			<td><?php echo sql_to_date($row['ibm_date']); ?></td>
-				<td>
+			<td>
+				<a href="<?php echo site_url('dashboard/editmaster/'.$row['id_transaction']); ?>">         			
+        			<button  class="btn btn-success edit report">
+        				<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+        			</button>
+	        	</a>
+	        	<div class="clearfix"></div>
+
+	        	<a href="<?php echo site_url('dashboard/deletemaster/'.$row['id_transaction']); ?>" onClick="return confirm('Are you sure you want to delete?')">                  
+	                    <button  class="btn btn-danger hapus report">
+	                    	<i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+	                    </button>
+	            </a>
               
-                <a href="<?php echo site_url('dashboard/editmaster/'.$row['id_transaction']); ?>">Edit</a>
-                <a href="<?php echo site_url('dashboard/deletemaster/'.$row['id_transaction']); ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
             </td>
 		</tr>
 		<?php $counter++ ?>

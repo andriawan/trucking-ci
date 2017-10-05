@@ -601,7 +601,7 @@ class Trucking extends MY_Model {
 	    }else{
 	    	
             $email    = strtolower($this->input->post('email'));
-            $identity = $this->input->post('username');
+            $identity = 	$this->input->post('username');
             $password = $this->input->post('password');
 
             $additional_data = array(
@@ -709,55 +709,56 @@ class Trucking extends MY_Model {
 		
 	}
 	
-		public function processEditMaster(){
+	public function processEditMaster(){
 		
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
         {
             redirect('auth', 'refresh');
         }
 
+        $id = $this->input->post('id');
+
         $identity_column = $this->config->item('identity','ion_auth');
 
 		$data = array(
-			'car-number' => $this->input->post('car-number'),
-			'nama_driver' => $this->input->post('nama_driver'),
-				'tempat-service' => $this->input->post('tempat-service'),
-					'stnk_date' => $this->input->post('stnk_date'),
-						'pkb_date' => $this->input->post('pkb_date'),
-							'service-date' => $this->input->post('service-date'),
-								'kir-date' => $this->input->post('kir-date'),
-									'sipa_date' => $this->input->post('sipa_date'),
-										'ibm_date' => $this->input->post('ibm_date')
-									
-			
-		
+			'car_number' => strtoupper($this->input->post('car-number')),
+			'nama_driver' => $this->input->post('nama-driver'),
+			'tempat_service' => $this->input->post('tempat-service'),
+			'stnk_date' => make_sql_date_time($this->input->post('stnk-date')),
+			'pkb_date' => make_sql_date_time($this->input->post('pkb-date')),
+			'service_date' => make_sql_date_time($this->input->post('service-date')),
+			'kir_date' => make_sql_date_time($this->input->post('kir-date')),
+			'sipa_date' => make_sql_date_time($this->input->post('sipa-date')),
+			'ibm_date' => make_sql_date_time($this->input->post('ibm-date'))	
 
 		);
 
+		// debug($id);
+		// return;
 
 		$this->validate =  array(
 
 	        array(
-	                'field' => 'car_number',
+	                'field' => 'car-number',
 	                'rules' => 'required',
 	        ),
 	        array(
-	                'field' => 'nama_driver',
+	                'field' => 'nama-driver',
 	                'rules' => 'required',
 	        ),
 	         array(
-	                'field' => 'tempat_service',
+	                'field' => 'tempat-service',
 	                'rules' => 'required',
 	        ),
 	        
 	         array(
-	                'field' => 'stnk_date',
+	                'field' => 'stnk-date',
 	                'rules' => 'required',
 	        ),
 	         array(
-	                'field' => 'pkb_date',
+	                'field' => 'pkb-date',
 	                'rules' => 'required',
-	        )/*,
+	        ),
 	        
 	         array(
 	                'field' => 'service-date',
@@ -771,15 +772,15 @@ class Trucking extends MY_Model {
 	        
 	        
 	          array(
-	                'field' => 'sipa_date',
+	                'field' => 'sipa-date',
 	                'rules' => 'required',
 	        ),
 	        
 	          array(
-	                'field' => 'ibm_date',
+	                'field' => 'ibm-date',
 	                'rules' => 'required',
 	        )
-	        */
+	        
 	        
 	    );
 
@@ -805,35 +806,20 @@ class Trucking extends MY_Model {
 
         // if validation is passed
 	    }else{
-	   	 
-	   	    $carnumber    = strtoupper($this->input->post('car_number'));
-            $driver = $this->input->post('nama_driver');
-            $tempat = $this->input->post('tempat_service');
-            
-            
-        $data=array('car_number'=>$carnumber,
-        'nama_driver'=>$driver,'tempat_service'=>$tempat);
-          
-         
-          
-          $id=$this->input->post('id');
-        
+	   	       
      
-     
-          $this->db->where('id_transaction', $id);
-          $result=$this->db->update('trucking_transaction',$data);
-          
-          
+	        $this->db->where('id_transaction', $id);
+	        $result = $this->db->update('trucking_transaction',$data);
 
-        //IF SUCCESS ADD DATA         
-        if ($data){
-                 $this->session->set_flashdata('sukses');
-                redirect('dashboard', 'refresh');
-        	}
-        	
+	        //IF SUCCESS ADD DATA         
+	        if ($data){
+	                 $this->session->set_flashdata('sukses','data berhasil diupdate');
+	                redirect('dashboard', 'refresh');
+	        	}
+	        	
 
 
-	    }
+		    }
 
 
 		

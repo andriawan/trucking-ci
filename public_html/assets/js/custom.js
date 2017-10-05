@@ -7,6 +7,8 @@ var items = $('.col-sm-10.adder .items').length;
 // dieksekusi dengan library jquery
 $(document).ready(function () {
 
+	var stnk_date = Date.parse($('.td-stnk' + 1).text());
+
 	// inisialisasi DOM list jumlah item list service
 	items = $('.col-sm-10.adder .items').length;
 
@@ -346,7 +348,8 @@ function cekStnkDate(now) {
 
 	for (var i = 0 ; i < $('.table tbody tr').length  ; i++) {
 
-		var stnk_date = Date.parse($('.td-stnk' + i).text());
+		var stnk_date = Date.parse($('.td-stnk' + i + ' span').text());
+
 
 		if(stnk_date - target >= now ){
 			console.log('masih aman');
