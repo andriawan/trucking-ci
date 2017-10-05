@@ -3,6 +3,8 @@
 		<tr>
 			<td>CAR NUMBER</td>
 			<td>NAMA DRIVER</td>
+			<td>INVOICE NUMBER</td>
+			<td>KILOMETER TOTAL</td>
 			<td>SERVICE PLACE</td>
 			<td>STNK DATE</td>
 			<td>PKB</td>
@@ -20,6 +22,8 @@
 		<tr>
 			<td><a href="#" class="table-link car<?php echo $counter; ?>"><?php echo $row['car_number']; ?></a></td>
 			<td><?php echo $row['nama_driver']; ?></td>
+			<td><?php echo $row['invoice_number']; ?></td>
+			<td><?php echo $row['kilometer_total']; ?></td>
 			<td><?php echo $row['tempat_service']; ?></td>
 			<td class="td-stnk<?php echo $counter; ?>">
 				<?php echo sql_to_date($row['stnk_date']); ?>

@@ -10,10 +10,6 @@
             <i class="fa fa-address-card" aria-hidden="true"></i>
             <span class="fa arrow"></span></a>
         </li>
-
-        <li>
-            <a href="<?php echo base_url('dashboard/profile') ?>" class=" hvr-bounce-to-right">  <i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Edit Profile</span><span class="fa arrow"></span></a>
-        </li>
         
     </ul>
 </div>

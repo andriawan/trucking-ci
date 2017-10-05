@@ -16,6 +16,23 @@
 				<input type="hidden" class="count-list" name="countItemServiceList" value="1" />
 				<input type="hidden" class="sum" name="sum-total" value="0" />
 			  
+
+			<!-- INVOICE NUMBER -->
+			  <div class="form-group">
+			    <label for="car-number" class="col-sm-2 control-label">INVOICE NUMBER</label>
+			    <div class="col-sm-10">
+			      <input type="text" name="invoice-number" class="form-control" required="true" id="invoice" placeholder="Input Invoice Number Here">
+			    </div>
+			  </div>	
+
+			 <!-- KILOMETER TOTAL -->
+			  <div class="form-group">
+			    <label for="car-number" class="col-sm-2 control-label">KILOMETER TOTAL</label>
+			    <div class="col-sm-10">
+			      <input type="number" name="kilometer-total" class="form-control" required="true" id="kilometer" placeholder="Input Kilometer Total Here">
+			    </div>
+			  </div>	
+
 			  <!-- CAR NUMBER -->
 			  <div class="form-group">
 			    <label for="car-number" class="col-sm-2 control-label">CAR NUMBER</label>
@@ -26,7 +43,7 @@
 
 			  <!-- NAMA DRIVER -->
 			  <div class="form-group">
-			    <label for="car-number" class="col-sm-2 control-label">NAMA DRIVER</label>
+			    <label for="car-number" class="col-sm-2 control-label">NAME DRIVER</label>
 			    <div class="col-sm-10">
 			      <input type="text" name="nama-driver" class="form-control" required="true" id="driver" placeholder="Input Nama Driver Here">
 			    </div>
@@ -34,9 +51,9 @@
 
 			  <!-- TEMPAT SERVICE -->
 			  <div class="form-group">
-			    <label for="car-number" class="col-sm-2 control-label">TEMPAT SERVICE</label>
+			    <label for="car-number" class="col-sm-2 control-label">PLACE SERVICE</label>
 			    <div class="col-sm-10">
-			      <input type="text" name="tempat-service" class="form-control" required="true" id="tempat-service" placeholder="Input TEMPAT SERVICE Here">
+			      <input type="text" name="tempat-service" class="form-control" required="true" id="tempat-service" placeholder="Input Place Service Here">
 			    </div>
 			  </div>
 
@@ -63,6 +80,32 @@
 			      <input type="text" name="service-date" class="form-control date" required="true" id="date-service" placeholder="Input Service Date Here">
 			    </div>
 			  </div>
+
+
+			   <!-- KIR DATE -->
+			  <div class="form-group">
+			    <label for="kir-date" class="col-sm-2 control-label">KIR DATE</label>
+			    <div class="col-sm-10">
+			      <input type="text" name="kir-date" class="form-control date" required="true" id="kir" placeholder="Input KIR Date Here">
+			    </div>
+			  </div>
+
+			   <!-- SIPA DATE -->
+			  <div class="form-group">
+			    <label for="sipa-date" class="col-sm-2 control-label">SIPA DATE</label>
+			    <div class="col-sm-10">
+			      <input type="text" name="sipa-date" class="form-control date" required="true" id="sipa" placeholder="Input SIPA Date Here">
+			    </div>
+			  </div>
+
+			   <!-- IBM DATE -->
+			  <div class="form-group">
+				    <label for="ibm-date" class="col-sm-2 control-label date">IBM DATE</label>
+			    	<div class="col-sm-10">
+			    		  <input type="text" name="ibm-date" class="form-control date" required="true" id="ibm" placeholder="Input IBM Date Here">
+				    </div>
+			  </div>
+
 
 			  <!-- DETAIL ITEM SERVICE -->
 			  <div class="form-group item-service">
@@ -105,30 +148,6 @@
 			  		<label for="total-price" class="col-sm-2 control-label">TOTAL PRICE</label>
 				    <div class="col-sm-10">
 				      <input type="text" disabled="true" disabled="true" required="true" name="total-price" class="form-control" id="total-price" placeholder="Total">
-				    </div>
-			  </div>
-
-			   <!-- KIR DATE -->
-			  <div class="form-group">
-			    <label for="kir-date" class="col-sm-2 control-label">KIR DATE</label>
-			    <div class="col-sm-10">
-			      <input type="text" name="kir-date" class="form-control date" required="true" id="kir" placeholder="Input KIR Date Here">
-			    </div>
-			  </div>
-
-			   <!-- SIPA DATE -->
-			  <div class="form-group">
-			    <label for="sipa-date" class="col-sm-2 control-label">SIPA DATE</label>
-			    <div class="col-sm-10">
-			      <input type="text" name="sipa-date" class="form-control date" required="true" id="sipa" placeholder="Input SIPA Date Here">
-			    </div>
-			  </div>
-
-			   <!-- IBM DATE -->
-			  <div class="form-group">
-				    <label for="ibm-date" class="col-sm-2 control-label date">IBM DATE</label>
-			    	<div class="col-sm-10">
-			    		  <input type="text" name="ibm-date" class="form-control date" required="true" id="ibm" placeholder="Input IBM Date Here">
 				    </div>
 			  </div>
 
