@@ -21,8 +21,8 @@ class Dashboard extends MY_Controller {
 		$this->trucking->showData();
 	}
 	
-	public function editmaster(){
-	    $id=$this->uri->segment(3);
+	public function editmaster($id){
+	    
 	    $this->db->select('*');
 	    $this->db->from('trucking_transaction');
 	    $this->db->where('id_transaction',$id);
@@ -30,7 +30,7 @@ class Dashboard extends MY_Controller {
 	    $query['unique'] = unique_multidim_array($query['query'],'id_transaction');
 	   
 	    
-     $this->load->view('admin/form',$query);
+     	$this->load->view('admin/form',$query);
 }
 
 
