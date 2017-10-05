@@ -12,6 +12,7 @@
 			<td>KIR</td>
 			<td>SIPA</td>
 			<td>IBM</td>
+			<td>ACTION</td>
 		</tr>
 	</thead>
 	<?php $counter = 0 ?>
@@ -44,6 +45,11 @@
 			<td><?php echo sql_to_date($row['kir_date']); ?></td>
 			<td><?php echo sql_to_date($row['sipa_date']); ?></td>
 			<td><?php echo sql_to_date($row['ibm_date']); ?></td>
+				<td>
+              
+                <a href="<?php echo site_url('dashboard/editmaster/'.$row['id_transaction']); ?>">Edit</a>
+                <a href="<?php echo site_url('dashboard/deletemaster/'.$row['id_transaction']); ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a>
+            </td>
 		</tr>
 		<?php $counter++ ?>
 	<?php endforeach ?>
