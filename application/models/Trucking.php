@@ -207,6 +207,8 @@ class Trucking extends MY_Model {
 		$data = array(
 
 			'car_number' => $this->input->post('car-number'),
+			'invoice_number' => $this->input->post('invoice-number'),
+			'kilometer_total' => $this->input->post('kilometer-total'),
 			'user_id' => $this->session->userdata('user_id'),
 			'nama_driver' => $this->input->post('nama-driver'),
 			'tempat_service' => $this->input->post('tempat-service'),
@@ -225,10 +227,20 @@ class Trucking extends MY_Model {
 			$items[$i] = $this->input->post('item-service' . $i);
 		}
 
+		// debug($this->input->post());
+		// debug($data);
 		// debug($items);
 		// return;
 
 		$this->validate =  array(
+			array(
+	                'field' => 'invoice-number',
+	                'rules' => 'required',
+	        ),
+	        array(
+	                'field' => 'kilometer-total',
+	                'rules' => 'required|numeric',
+	        ),
 
 	        array(
 	                'field' => 'car-number',
@@ -272,6 +284,17 @@ class Trucking extends MY_Model {
 	    if ($this->validate($data) == FALSE) {
 
 			$this->data['message'] = validation_errors();
+
+			$this->data['invoice_number'] = array(
+                'name'  => 'invoice-number',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('invoice-number'),
+            );
+            $this->data['kilometer-total'] = array(
+                'name'  => 'nama-driver',
+                'type'  => 'number',
+                'value' => $this->form_validation->set_value('kilometer-total'),
+            );
 
             $this->data['car_number'] = array(
                 'name'  => 'car-number',
@@ -361,7 +384,7 @@ class Trucking extends MY_Model {
 
 			}else{
 				$this->session->set_flashdata('error', 'Terjadi kesalahan');
-				redirect('dashboard/auth/logout','refresh');
+				redirect('auth/logout','refresh');
 			}
 
 	    }
