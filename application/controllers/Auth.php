@@ -69,7 +69,7 @@ class Auth extends CI_Controller {
 					redirect('dashboard/input', 'refresh');
 				}else{
 					$this->session->set_flashdata('sukses', $this->ion_auth->messages());
-					redirect('dashboard', 'refresh');
+					redirect('dashboard/page/1', 'refresh');
 
 				}
 				//if the login is successful

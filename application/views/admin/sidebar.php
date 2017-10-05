@@ -2,7 +2,7 @@
     <ul class="nav" id="side-menu">
     
         <li>
-            <a href="<?php echo base_url('dashboard') ?>" class=" hvr-bounce-to-right"><i class="fa fa-home nav_icon "></i><span class="nav-label">Dashboards</span> </a>
+            <a href="<?php echo base_url('dashboard/page/1') ?>" class=" hvr-bounce-to-right"><i class="fa fa-home nav_icon "></i><span class="nav-label">Dashboards</span> </a>
         </li>
 
         <li>
