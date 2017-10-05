@@ -362,7 +362,7 @@ function cekStnkDate(now) {
 			$('.td-stnk' + i).append('<br><p>(stnk akan jatuh tempo)</p>');
 
 			$('ul.car-name')
-			.append('<li> Mobil dengan Nomer Polisi ' + $('.table-link.car' + i).text() + ' akan mati pada tanggal ' + $('.td-stnk' + i).text() + '</li>');
+			.append('<li> Mobil dengan Nomer Polisi ' + $('.table-link.car' + i).text() + ' akan mati pada tanggal ' + $.datepicker.formatDate('dd MM yy', new Date($('.td-stnk' + i + ' span').text())) + '</li>');
 
 			setTimeout(function () {
 				$('.notif-me:hidden').fadeIn("fast");
