@@ -28,6 +28,28 @@
 				    </div>
 				  </div>
 			  
+			<!-- INVOICE NUMBER -->
+			  <div class="form-group">
+			    <label for="car-number" class="col-sm-2 control-label">INVOICE NUMBER</label>
+			    <div class="col-sm-10">
+			      <input type="text" name="invoice-number" class="form-control" required="true" id="invoice" placeholder="Input Invoice Number Here"
+			      
+			      value="<?php echo  $row['invoice_number']; ?>">
+
+			    </div>
+			  </div>	
+
+			 <!-- KILOMETER TOTAL -->
+			  <div class="form-group">
+			    <label for="car-number" class="col-sm-2 control-label">KILOMETER TOTAL</label>
+			    <div class="col-sm-10">
+			      <input type="number" name="kilometer-total" class="form-control" required="true" id="kilometer" placeholder="Input Kilometer Total Here"
+
+			      value="<?php echo  $row['kilometer_total']; ?>">
+
+			    </div>
+			  </div>	  
+
 			  <!-- CAR NUMBER -->
 			  <div class="form-group">
 			      

@@ -808,6 +808,8 @@ class Trucking extends MY_Model {
 
 		$data = array(
 			'car_number' => strtoupper($this->input->post('car-number')),
+			'invoice_number' => $this->input->post('invoice-number'),
+			'kilometer_total' => $this->input->post('kilometer-total'),
 			'nama_driver' => $this->input->post('nama-driver'),
 			'tempat_service' => $this->input->post('tempat-service'),
 			'stnk_date' => make_sql_date_time($this->input->post('stnk-date')),
@@ -824,6 +826,14 @@ class Trucking extends MY_Model {
 
 		$this->validate =  array(
 
+			array(
+	                'field' => 'invoice-number',
+	                'rules' => 'required',
+	        ),
+	        array(
+	                'field' => 'kilometer-total',
+	                'rules' => 'required|numeric',
+	        ),
 	        array(
 	                'field' => 'car-number',
 	                'rules' => 'required',
@@ -900,7 +910,7 @@ class Trucking extends MY_Model {
 	        //IF SUCCESS ADD DATA         
 	        if ($data){
 	                 $this->session->set_flashdata('sukses','data berhasil diupdate');
-	                redirect('dashboard', 'refresh');
+	                redirect('dashboard/page/1', 'refresh');
 	        	}
 	        	
 
