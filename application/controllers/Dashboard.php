@@ -58,13 +58,17 @@ class Dashboard extends MY_Controller {
 	
 	
 	public function deletemaster(){
+		
 	    $id=$this->uri->segment(3);
 	    $this->db->where('id_transaction', $id);
-        $result=$this->db->delete('trucking_transaction'); 
+        $result= 	$this->db->delete('trucking_transaction'); 
+
+        $this->db->where('id_transaction', $id);
+        $result= $this->db->delete('trucking_service_transaction'); 
         
         if($result){
           
-            redirect('dashboard','refresh');
+            redirect('dashboard/page/1','refresh');
         }
 	}
 	
