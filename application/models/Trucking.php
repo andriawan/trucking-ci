@@ -21,6 +21,34 @@ class Trucking extends MY_Model {
 		
 	}
 
+	
+	
+	public function showEditService(){
+	    $id=$this->uri->segment(3);
+	    $this->db->select('*');
+	    $this->db->from('service_category');
+	    $this->db->where('id_service',$id);
+	    $query['query'] = $this->db->get()->result_array();
+	    $query['unique'] = unique_multidim_array($query['query'],'id_service');
+	    $this->load->view('admin/editservice',$query);
+	}
+	
+		public function showEditMaster(){
+	   /* $id=$this->uri->segment(3);
+	    $this->db->select('*');
+	    $this->db->from('trucking_transaction');
+	    $this->db->where('id_transaction',$id);
+	    
+	    $query['query'] = $this->db->get()->result_array();
+	    $query['unique'] = unique_multidim_array($query['query'],'id_transaction');*/
+	    $this->load->view('user/form',$query);
+	    
+	    
+	}
+	
+	
+	
+
 	public function ShowAdminData($value='')
 	{
 		# code...
@@ -45,6 +73,30 @@ class Trucking extends MY_Model {
 		$this->load->view('admin/dashboard', $query);
 	}
 
+	
+		
+	public function showProfile(){
+	 
+	    $this->load->view('admin/dprofile');
+	}
+	
+	public function showUser(){
+	    $this->db->select('*');
+	    $this->db->from('users');
+	    $query['query'] = $this->db->get()->result_array();
+	    $query['unique'] = unique_multidim_array($query['query'],'id');
+	    $this->load->view('admin/duser',$query);
+	}
+	
+	public function showService(){
+	    $this->db->select('*');
+	    $this->db->from('service_category');
+	 
+	    $query['query'] = $this->db->get()->result_array();
+	    $query['unique'] = unique_multidim_array($query['query'],'id_service');
+	    $this->load->view('admin/dservice',$query);
+
+}
 	public function showSingleUser()
 	{
 		if ($this->session->userdata('user_id') == null || !$this->ion_auth->logged_in()) {
@@ -345,6 +397,151 @@ class Trucking extends MY_Model {
 		}
 	}
 
+	public function showAddService()
+	{
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('auth/login', 'refresh');
+		}
+		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
+		{
+			// redirect them to the home page because they must be an administrator to view this
+			return show_error('You must be an administrator to view this page.');
+		}
+		else
+		{
+			$this->load->view('admin/add-service');
+		}
+	}
+
+	public function processEditUser()
+	{
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+
+        $data = array(
+
+        	'id' => intval($this->input->post('id')),
+			'email' => $this->input->post('email'),
+			'username' => $this->input->post('username'),
+
+		);
+
+		$user = $this->ion_auth->user($this->input->post('id'))->row();
+		$groups=$this->ion_auth->groups()->result_array();
+		$currentGroups = $this->ion_auth->get_users_groups($this->input->post('id'))->result();
+
+		// update the password if it was posted
+		if ($this->input->post('password'))
+		{
+			$data['password'] = $this->input->post('password');
+		}
+
+
+		if ($this->ion_auth->is_admin())
+		{
+			//Update the groups user belongs to
+			$groupData = $this->input->post('groups');
+
+			if (isset($groupData) && !empty($groupData)) {
+
+				$this->ion_auth->remove_from_group('', $id);
+
+				foreach ($groupData as $grp) {
+					$this->ion_auth->add_to_group($grp, $id);
+				}
+
+			}
+		}
+
+
+		$this->validate =  array(
+
+			array(
+	                'field' => 'id',
+	                'rules' => 'required|numeric',
+	        ),
+	        array(
+	                'field' => 'email',
+	                'rules' => 'required|valid_email',
+	        ),
+	        array(
+	                'field' => 'username',
+	                'rules' => 'required|is_unique[users.username]',
+	        ),
+	        array(
+	                'field' => 'password',
+	                'rules' => 'required|min_length[6]',
+	        )
+	    );
+
+	    if (isset($_POST) && !empty($_POST))
+		{
+			if ($this->validate($data) == FALSE) {
+
+			$this->data['message'] = validation_errors();
+
+			$this->data['id'] = array(
+                'name'  => 'id',
+                'type'  => 'hidden',
+                'value' => $this->form_validation->set_value('id'),
+            );
+
+            $this->data['email'] = array(
+                'name'  => 'email',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('email'),
+            );
+            $this->data['username'] = array(
+                'name'  => 'username',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('username'),
+            );
+            
+            $dataResult['data'] = $this->data;
+
+            $this->load->view('admin/edit-user', $dataResult);
+
+        	// if validation is passed
+	    	}else{
+
+	    		// check to see if we are updating the user
+			   if($this->ion_auth->update($user->id, $data))
+			    {
+			    	// redirect them back to the admin page if admin, or to the base url if non admin
+				    $this->session->set_flashdata('sukses', $this->ion_auth->messages() );
+				    if ($this->ion_auth->is_admin())
+					{
+						redirect('dashboard/showU', 'refresh');
+					}
+					else
+					{
+						redirect('/', 'refresh');
+					}
+
+			    }
+			    else
+			    {
+			    	// redirect them back to the admin page if admin, or to the base url if non admin
+				    $this->session->set_flashdata('error', $this->ion_auth->errors() );
+				    if ($this->ion_auth->is_admin())
+					{
+						redirect('dashboard/showU', 'refresh');
+					}
+					else
+					{
+						redirect('/', 'refresh');
+					}
+
+			    }
+
+			}
+	    }
+	}    
+
 	public function processAddUser()
 	{
 		
@@ -362,6 +559,7 @@ class Trucking extends MY_Model {
 			'password' => $this->input->post('password')
 
 		);
+
 
 		$this->validate =  array(
 
@@ -403,11 +601,11 @@ class Trucking extends MY_Model {
 	    }else{
 	    	
             $email    = strtolower($this->input->post('email'));
-            $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
+            $identity = $this->input->post('username');
             $password = $this->input->post('password');
 
             $additional_data = array(
-                'username' => $this->input->post('username'),
+
             );
 
            
@@ -416,14 +614,329 @@ class Trucking extends MY_Model {
         	{
             // check to see if we are creating the user
             // redirect them back to the admin page
-            $this->session->set_flashdata('sukses', $this->ion_auth->messages());
-            redirect('dashboard/adduser', 'refresh');
+	            $this->session->set_flashdata('sukses', $this->ion_auth->messages());
+	            redirect('dashboard/adduser', 'refresh');
+
+        	}else{
+        		$this->session->set_flashdata('error', $this->ion_auth->errors());
+	            redirect('dashboard/adduser', 'refresh');
+
         	}
 
 	    }
 
 
 		
+	}
+	
+	
+	
+		public function processEditService(){
+		
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+
+        $identity_column = $this->config->item('identity','ion_auth');
+
+		$data = array(
+			'name' => $this->input->post('name'),
+			'price' => $this->input->post('price'),
+			
+		
+
+		);
+
+
+		$this->validate =  array(
+
+	        array(
+	                'field' => 'name',
+	                'rules' => 'required',
+	        ),
+	        array(
+	                'field' => 'price',
+	                'rules' => 'required|min_length[5]',
+	        )
+	    );
+
+
+	    if ($this->validate($data) == FALSE) {
+
+			$this->data['message'] = validation_errors();
+
+            $this->data['name'] = array(
+                'name'  => 'name',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('name'),
+            );
+            $this->data['price'] = array(
+                'name'  => 'price',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('price'),
+            );
+            
+            $dataResult['data'] = $this->data;
+
+            $this->load->view('admin/edit-service', $dataResult);
+
+        // if validation is passed
+	    }else{
+	   	    $name    = strtoupper($this->input->post('name'));
+            $price = $this->input->post('price');
+
+         
+          $data=array('category'=>$name,'price'=>$price);
+          
+          
+          $id=$this->input->post('id');
+          
+          $this->db->where('id_service', $id);
+          $result=$this->db->update('service_category',$data);
+
+            //IF SUCCESS ADD DATA         
+        if ($data){
+                 $this->session->set_flashdata('sukses');
+                redirect('dashboard/showS', 'refresh');
+        	}
+        	
+
+
+	    }
+
+
+		
+	}
+	
+		public function processEditMaster(){
+		
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+
+        $identity_column = $this->config->item('identity','ion_auth');
+
+		$data = array(
+			'car-number' => $this->input->post('car-number'),
+			'nama_driver' => $this->input->post('nama_driver'),
+				'tempat-service' => $this->input->post('tempat-service'),
+					'stnk_date' => $this->input->post('stnk_date'),
+						'pkb_date' => $this->input->post('pkb_date'),
+							'service-date' => $this->input->post('service-date'),
+								'kir-date' => $this->input->post('kir-date'),
+									'sipa_date' => $this->input->post('sipa_date'),
+										'ibm_date' => $this->input->post('ibm_date')
+									
+			
+		
+
+		);
+
+
+		$this->validate =  array(
+
+	        array(
+	                'field' => 'car_number',
+	                'rules' => 'required',
+	        ),
+	        array(
+	                'field' => 'nama_driver',
+	                'rules' => 'required',
+	        ),
+	         array(
+	                'field' => 'tempat_service',
+	                'rules' => 'required',
+	        ),
+	        
+	         array(
+	                'field' => 'stnk_date',
+	                'rules' => 'required',
+	        ),
+	         array(
+	                'field' => 'pkb_date',
+	                'rules' => 'required',
+	        )/*,
+	        
+	         array(
+	                'field' => 'service-date',
+	                'rules' => 'required',
+	        ),
+	        
+	          array(
+	                'field' => 'kir-date',
+	                'rules' => 'required',
+	        ),
+	        
+	        
+	          array(
+	                'field' => 'sipa_date',
+	                'rules' => 'required',
+	        ),
+	        
+	          array(
+	                'field' => 'ibm_date',
+	                'rules' => 'required',
+	        )
+	        */
+	        
+	    );
+
+
+	    if ($this->validate($data) == FALSE) {
+
+			$this->data['message'] = validation_errors();
+
+            /*$this->data['name'] = array(
+                'name'  => 'name',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('name'),
+            );
+            $this->data['price'] = array(
+                'name'  => 'price',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('price'),
+            );*/
+            
+            $dataResult['data'] = $this->data;
+
+            $this->load->view('admin/form', $dataResult);
+
+        // if validation is passed
+	    }else{
+	   	 
+	   	    $carnumber    = strtoupper($this->input->post('car_number'));
+            $driver = $this->input->post('nama_driver');
+            $tempat = $this->input->post('tempat_service');
+            
+            
+        $data=array('car_number'=>$carnumber,
+        'nama_driver'=>$driver,'tempat_service'=>$tempat);
+          
+         
+          
+          $id=$this->input->post('id');
+        
+     
+     
+          $this->db->where('id_transaction', $id);
+          $result=$this->db->update('trucking_transaction',$data);
+          
+          
+
+        //IF SUCCESS ADD DATA         
+        if ($data){
+                 $this->session->set_flashdata('sukses');
+                redirect('dashboard', 'refresh');
+        	}
+        	
+
+
+	    }
+
+
+		
+	}
+	
+	
+	public function processAddService()
+	{
+		
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+
+        $identity_column = $this->config->item('identity','ion_auth');
+
+		$data = array(
+
+			'name' => $this->input->post('name'),
+			'price' => $this->input->post('price'),
+		
+
+		);
+
+		$this->validate =  array(
+
+	        array(
+	                'field' => 'name',
+	                'rules' => 'required',
+	        ),
+	        array(
+	                'field' => 'price',
+	                'rules' => 'required|min_length[5]',
+	        )
+	    );
+
+
+	    if ($this->validate($data) == FALSE) {
+
+			$this->data['message'] = validation_errors();
+
+            $this->data['name'] = array(
+                'name'  => 'name',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('name'),
+            );
+            $this->data['price'] = array(
+                'name'  => 'price',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('price'),
+            );
+            
+            $dataResult['data'] = $this->data;
+
+            $this->load->view('admin/add-service', $dataResult);
+
+        // if validation is passed
+	    }else{
+	   	    $name    = strtoupper($this->input->post('name'));
+            $price = $this->input->post('price');
+
+         
+          $data=array('category'=>$name,'price'=>$price);
+          $result=$this->db->insert('service_category',$data);
+
+            //IF SUCCESS ADD DATA         
+        if ($data){
+                 $this->session->set_flashdata('sukses');
+                redirect('dashboard/showS', 'refresh');
+        	}
+        	
+
+
+	    }
+
+
+		
+	}
+
+	public function deleteUser($id)
+	{
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+		
+		$this->db->delete('users', array('id' => $id));
+		$this->session->set_flashdata('sukses', 'User berhasil dihapus');
+		redirect('dashboard/showU','refresh');
+		
+	}
+
+	public function editUser($id)
+	{
+		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+        {
+            redirect('auth', 'refresh');
+        }
+
+        $query = $this->db->get_where('users', array('id' => $id), 1)->result_array();
+        $dataResult['data'] = $query;
+        $this->load->view('admin/edit-user', $dataResult);
+
 	}
 
 }
