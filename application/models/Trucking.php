@@ -73,6 +73,67 @@ class Trucking extends MY_Model {
 		$this->load->view('admin/dashboard', $query);
 	}
 
+	public function showPaginationData($page)
+	{
+		$this->load->library('pagination');
+
+		$config['total_rows'] = $this->db->count_all_results('trucking_transaction');
+		$config['per_page'] = 3	;
+		$config['base_url'] = base_url('dashboard/page/');
+
+		$config['use_page_numbers'] = TRUE;
+
+		$config['full_tag_open'] = '<nav class="pull-right" aria-label="Page navigation"><ul class="pagination pagination-custom">';
+		$config['full_tag_close'] = '</nav></ul>';
+		$config['first_link'] = 'First';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['next_link'] = '&gt;';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['prev_link'] = '&lt;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
+
+		$this->pagination->initialize($config);
+		$query['pagination'] = $this->pagination->create_links();
+		// debug($config);
+		// debug($query);
+		// return;
+
+		$page_num = $page;
+			if ($page_num == null) {
+				$page_num = 1;
+			}
+		$start = ($page_num - 1) * $config['per_page'];
+
+		$this->db->select('*');
+		$this->db->from('trucking_service_transaction');
+		$this->db->join(
+			'trucking_transaction', 'trucking_service_transaction.id_transaction = trucking_transaction.id_transaction');
+		$this->db->join(
+			'service_category', 'trucking_service_transaction.id_service = service_category.id_service');
+		$this->db->order_by('trucking_transaction.service_date', 'DESC');
+		$this->db->limit($config['per_page'], $start);
+		$this->db->group_by('trucking_transaction.id_transaction');
+
+		$query['query'] = $this->db->get()->result_array();
+		$query['unique'] = unique_multidim_array($query['query'],'id_transaction');
+		
+		// debug($config);
+		// debug($this->data);
+		// return;
+		$this->load->helper('date');
+		$this->load->view('admin/dashboard', $query);
+	}
+
 	
 		
 	public function showProfile(){

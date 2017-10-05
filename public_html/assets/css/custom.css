@@ -192,6 +192,52 @@ ul.car-name li{
     margin-bottom: 10px;
 }
 
+/* pagination-custom custom */
+.pagination-custom{
+  margin: 5px;
+  border-radius: 0px;
+}
+
+.pagination-custom>li{
+  border-radius: 0px;
+}
+
+.pagination-custom>li>a{
+  color: #0ac888;
+  border: none;
+}
+
+.pagination-custom>li>a:hover{
+  color: #ffffff;
+  background:#0ac888; 
+}
+
+.pagination-custom>.active>a, 
+.pagination-custom>.active>a:focus, 
+.pagination-custom>.active>a:hover, 
+.pagination-custom>.active>span, 
+.pagination-custom>.active>span:focus, 
+.pagination-custom>.active>span:hover{
+    background-color: #0ac888;
+    border: none;
+}
+
+.pagination-custom>li:last-child>a, .pagination-custom>li:last-child>span {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.pagination-custom>li:first-child>a, .pagination-custom>li:first-child>span {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.pagination-custom>li:first-child>a, .pagination-custom>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
 body {
     /* https://pixabay.com/en/truck-formula-1-mercedes-white-2707696/ */
     background: url(../img/truck-bg.jpg)no-repeat 0px 0px;

@@ -24,6 +24,10 @@
 	  		<span>Export to PDF</span>
 		</button>
 
+		<nav aria-label="...">
+		  <?php echo $pagination; ?>
+		</nav>
+
 		<div class="clearfix"></div>
 
 		<?php if (empty($unique) || empty($query)): ?>

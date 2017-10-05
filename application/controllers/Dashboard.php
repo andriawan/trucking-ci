@@ -20,6 +20,16 @@ class Dashboard extends MY_Controller {
 		$this->load->model('Trucking','trucking');
 		$this->trucking->showData();
 	}
+
+	public function page($page = null)
+	{
+		if ($page == null) {
+			$page = 1;
+		}
+		$this->ionAuthCheck();
+		$this->load->model('Trucking','trucking');
+		$this->trucking->showPaginationData($page);	
+	}
 	
 	public function editmaster($id){
 	    
