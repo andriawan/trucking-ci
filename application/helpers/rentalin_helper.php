@@ -21,6 +21,35 @@ function sql_to_date($input)
 	return $date->format('d-m-Y');	
 }
 
+function generateInvoice()
+{
+	$codeName = strtoupper('trc');
+	$year = date("Y");
+	$month = date("m");
+	$day_year = date("z");
+	$random = strtoupper(getRandomWord(4));
+
+	return $codeName . $year . $month . $day_year . $random;
+
+}
+
+//https://stackoverflow.com/questions/3329903/how-can-i-generate-random-words-in-php
+function getRandomWord($len = 10) {
+    $word = array_merge(range('a', 'z'), range('A', 'Z'));
+    shuffle($word);
+    return substr(implode($word), 0, $len);
+}
+
+//https://stackoverflow.com/questions/3329903/how-can-i-generate-random-words-in-php
+function createUniqueId() {
+    while (1) {
+       $word = getRandomWord();
+       if (!idExists($word)) { // idExists returns true if the id is already used
+           return $word;
+       }
+    }
+}
+
 // from Ghanshyam Katriya(anshkatriya@gmail) in http://php.net/manual/en/function.array-unique.php
 function unique_multidim_array($array, $key) { 
     $temp_array = array(); 
