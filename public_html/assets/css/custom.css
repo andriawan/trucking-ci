@@ -100,6 +100,44 @@ a.table-link{
     float: left;
 }
 
+.btn.edit{
+    margin-bottom: 10px;
+    border-radius: 0px;
+    background-color: #0ac888;
+    border: none;
+    font-size: 12px;
+}
+
+.btn.hapus{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 0px;
+    background-color: #df4949;
+    border: none;
+    font-size: 12px;
+}
+
+.btn.edit.report{
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 0px;
+    background-color: #0ac888;
+    border: none;
+    font-size: 12px;
+}
+
+.btn.hapus.report{
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 0;
+    border-radius: 0px;
+    background-color: #df4949;
+    border: none;
+    font-size: 12px;
+}
+
 .btn.pdf{
     margin-bottom: 10px;
     margin-left: 10px;
