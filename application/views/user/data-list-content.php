@@ -2,7 +2,7 @@
 
 	<div class="banner">
 		<h2>
-			<a href="<?php echo base_url('dashboard'); ?>">Dashboard</a>
+			<a href="<?php echo base_url('dashboard/input'); ?>">Dashboard</a>
 			<i class="fa fa-angle-right"></i>
 			<span>REPORT TRUCKING SOLID LOGISTICS</span>
 		</h2>
