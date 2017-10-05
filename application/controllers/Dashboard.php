@@ -55,10 +55,16 @@ class Dashboard extends MY_Controller {
             redirect('dashboard/showS','refresh');
         }
 	}
+
+	function generate()
+	{
+		$s = generateInvoice();
+		debug($s);
+	}
 	
 	
 	public function deletemaster(){
-		
+
 	    $id=$this->uri->segment(3);
 	    $this->db->where('id_transaction', $id);
         $result= 	$this->db->delete('trucking_transaction'); 
