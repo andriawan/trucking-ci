@@ -6,6 +6,10 @@
         </li>
 
         <li>
+            <a href="<?php echo base_url('dashboard/showfilter') ?>" class=" hvr-bounce-to-right"><i class="fa fa-home nav_icon "></i><span class="nav-label">Check Invoice</span> </a>
+        </li>
+
+        <li>
             <a href="<?php echo base_url('dashboard/showU') ?>" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon"></i> <span class="nav-label">Users</span><span class="fa arrow"></span></a>
         </li>
          <li>

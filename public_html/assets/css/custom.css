@@ -100,6 +100,19 @@ a.table-link{
     float: left;
 }
 
+.btn.search{
+    margin-bottom: 10px;
+    border-radius: 0px;
+    background-color: #0ac888;
+    border: none;
+    font-size: 12px;
+    margin-left: 0;
+}
+
+.custom-search{
+    padding-left: 0px;
+}
+
 .btn.edit{
     margin-bottom: 10px;
     border-radius: 0px;

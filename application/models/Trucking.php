@@ -59,6 +59,11 @@ class Trucking extends MY_Model {
 		return $this->db->get('service_category')->result_array();
 	}
 
+	public function showFilter()
+	{
+		$this->load->view('admin/filter-invoice');	
+	}
+
 	public function showData()
 	{
 		$this->db->select('*');
@@ -499,6 +504,32 @@ class Trucking extends MY_Model {
 		{
 			$this->load->view('admin/add-service');
 		}
+	}
+
+	public function processInvoiceData()
+	{
+		$filter = $this->input->post('invoice-number');
+
+		$idTransactionInvoice = $this->db->select('id_transaction')
+			->get_where('trucking_transaction', array('invoice_number' => $filter ),1)->result();
+
+		$this->db->select('*');
+		$this->db->from('trucking_service_transaction');
+		$this->db->join(
+			'trucking_transaction', 'trucking_service_transaction.id_transaction = trucking_transaction.id_transaction');
+		$this->db->join(
+			'service_category', 'trucking_service_transaction.id_service = service_category.id_service');
+		$this->db->where(array('trucking_service_transaction.id_transaction' => $idTransactionInvoice[0]->id_transaction ));
+
+
+		$query['query'] = $this->db->get()->result_array();
+		$query['unique'] = unique_multidim_array($query['query'],'id_transaction');
+		// debug($query['unique']);
+		// debug($query['query']);
+
+		$this->load->view('admin/filter-invoice', $query);
+
+
 	}
 
 	public function processEditUser()

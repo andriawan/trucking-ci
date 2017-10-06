@@ -99,6 +99,13 @@ class Dashboard extends MY_Controller {
 		$this->load->model('Trucking','trucking');
 		$this->trucking->showService();
 	}
+
+	public function showFilter()
+	{
+		$this->ionAuthCheck();
+		$this->load->model('Trucking','trucking');
+		$this->trucking->showFilter();
+	}
 	
 
 	public function adduser()
@@ -154,12 +161,17 @@ class Dashboard extends MY_Controller {
 	}
 	
 
-
-	
 	public function submitService(){
 	    $this->ionAuthCheck();
 	    $this->load->model('Trucking','trucking');
 	    $this->trucking->processAddService();
+	}
+
+	public function submitInvoiceData()
+	{
+		$this->ionAuthCheck();
+	    $this->load->model('Trucking','trucking');
+	    $this->trucking->processInvoiceData();
 	}
 
 	public function tester()
