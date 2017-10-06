@@ -1,0 +1,49 @@
+<div class="col-md-9 main-content">
+
+	<div class="banner">
+		<h2>
+			<a href="<?php echo base_url('dashboard'); ?>">Dashboard</a>
+			<i class="fa fa-angle-right"></i>
+			<span>REPORT TRUCKING SOLID LOGISTICS</span>
+		</h2>
+	</div>
+
+	<div class="col-md-12 main-content list">
+
+		
+		 <div class="pull-left badges">
+			<span class="badge data">Total data : <?php echo $total_rows; ?></span>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<button type="button" onclick="exportExcel()" id="export-excel" class="btn btn-success custom pull-left excel">
+	  		<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+	  		<span>Export to Excel</span>
+		</button>
+
+		<button type="button" id="export-pdf" onclick="exportPDF()" class="btn btn-success custom pull-left pdf">
+	  		<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+	  		<span>Export to PDF</span>
+		</button>
+
+		<nav aria-label="...">
+		  <?php echo $pagination; ?>
+		</nav>
+
+
+		<div class="clearfix"></div>
+
+		<?php if (empty($unique) || empty($query)): ?>
+			<div>Nothing data to show</div>
+		<?php else: ?>
+
+			<div class="table-responsive">
+				<?php $this->load->view('components/common/table-report-pagination'); ?>
+			</div>
+
+		<?php endif ?>
+
+	</div>
+
+</div>

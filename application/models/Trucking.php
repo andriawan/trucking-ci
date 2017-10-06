@@ -128,17 +128,33 @@ class Trucking extends MY_Model {
 		$this->db->join(
 			'service_category', 'trucking_service_transaction.id_service = service_category.id_service');
 		$this->db->order_by('trucking_transaction.service_date', 'DESC');
-		$this->db->limit($config['per_page'], $start);
 		$this->db->group_by('trucking_transaction.id_transaction');
-
+		$this->db->limit($config['per_page'], $start);
 		$query['query'] = $this->db->get()->result_array();
-		$query['unique'] = unique_multidim_array($query['query'],'id_transaction');
+
+		$tmp = array();
+
+		foreach ($query['query'] as $key => $value) {
+			$this->db->select('*');
+			$this->db->from('trucking_service_transaction');
+			$this->db->join(
+			'service_category', 'trucking_service_transaction.id_service = service_category.id_service');
+			$this->db->where(array(
+				'trucking_service_transaction.id_transaction' => $value['id_transaction']
+				));
+
+			$tmp[$key] = $this->db->get()->result_array();
+		}
+
+		$query['unique'] = $tmp;
 		$query['total_rows'] = $total_rows;
+
+		// debug($query);
+		// debug($tmp);
 		// debug($config);
-		// debug($this->data);
 		// return;
 		$this->load->helper('date');
-		$this->load->view('admin/dashboard', $query);
+		$this->load->view('admin/dashboard-pagination', $query);
 	}
 
 	
